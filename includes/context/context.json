@@ -1,0 +1,47 @@
+{
+	"popup": {
+		"about": {
+			"header": "About",
+			"content": "about.html",
+			"footer": "about_footer.html"
+		},
+		"power": {
+			"header": "Power",
+			"content": "power.html",
+			"footer": "power_footer.html"
+		},
+		"audio":{
+			"header": "Audio Settings",
+			"content": "audio.html",
+			"footer": "audio_footer.html"
+		},
+		"player":{
+			"header": "Player Settings",
+			"content": "player.html",
+			"footer": "player_footer.html"
+		},
+		"pers":{
+			"header": "Personalisation",
+			"content": "pers.html",
+			"footer": "pers_footer.html"
+		},
+		"change":{
+			"header": "Changelog",
+			"content": "changelog.html",
+			"footer": "about_footer.html"
+		},
+		"folder_prop":{
+			"header": "Properties",
+			"content": "folder_prop.php",
+			"footer": "about_footer.html"
+		},
+		"update_avail":{
+			"header": "Update",
+			"content": "update_avail.php",
+			"footer": "update_avail_footer.html"
+		}
+	},
+	"rcm": {
+
+	}
+}

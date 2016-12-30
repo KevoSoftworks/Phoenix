@@ -1,0 +1,1 @@
+There is a new version of the Phoenix player available for download. The newest version available for download is version <?php echo $_GET["ver"] ?>. Do you want to update?<br/><br/>
