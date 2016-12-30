@@ -6,9 +6,9 @@ function rightClickMenuFolder(folder, folderElem){
 	//uri = encodeURIComponent(uri);
 	
 	rcm_div = "<div class='rcm'>"+
-			"<div id='rcm_item_1' class='rcm_item' onClick=\"addSong('" + uri + "', -2)\">Play All</div>"+
-			"<div id='rcm_item_2' class='rcm_item' onClick=\"sendCmd('update " + uri + "')\">Update</div>"+
-			"<div id='rcm_item_3' class='rcm_item' onClick=\"popup('folder_prop','cmd=" + uri + "')\">Properties</div>"+
+			"<div id='rcm_item_1' class='rcm_item' onClick=\"addSong('" + uri + "', -2); closeRightClickMenu(); \">Play All</div>"+
+			"<div id='rcm_item_2' class='rcm_item' onClick=\"sendCmd('update " + uri + "'); closeRightClickMenu(); \">Update</div>"+
+			"<div id='rcm_item_3' class='rcm_item' onClick=\"popup('folder_prop','cmd=" + uri + "'); closeRightClickMenu(); \">Properties</div>"+
 		"</div>";
 	window.rcm = true;
 	$(document.body).append(rcm_div);
@@ -17,8 +17,7 @@ function rightClickMenuFolder(folder, folderElem){
 		"left": (window.mouseX - 10) + "px"
 	});
 	$(".rcm").on("mouseleave", function(){
-		window.rcm = false;
-		$(".rcm").remove();
+		closeRightClickMenu();
 	});
 }
 
@@ -27,12 +26,12 @@ function rightClickMenu(type){
 	switch(type){
 		case "settings":
 		rcm_div = "<div class='rcm'>"+
-			//"<div id='rcm_item_1' class='rcm_item' onClick=\"popup('audio')\"><img class='rcm_icon' src='/assets/" + window.themedark + "/play_2.png'/>Audio Settings</div>"+
-			//"<div id='rcm_item_2' class='rcm_item' onClick=\"popup('player')\"><img class='rcm_icon' src='/assets/" + window.themedark + "/wrench.png'/>Player Settings</div>"+
-			//"<div id='rcm_item_3' class='rcm_item' onClick=\"popup('pers')\"><img class='rcm_icon' src='/assets/" + window.themedark + "/customise.png'/>Personalise</div>"+
-			"<div id='rcm_item_4' class='rcm_item' onClick=\"popup('about')\"><img class='rcm_icon' src='/assets/" + window.themedark + "/about.png'/>About</div>"+
-			"<div id='rcm_item_5' class='rcm_item' onClick=\"popup('change')\"><img class='rcm_icon' src='/assets/" + window.themedark + "/about.png'/>Changelog</div>"+
-			"<div id='rcm_item_6' class='rcm_item' onClick=\"popup('power')\"><img class='rcm_icon' src='/assets/" + window.themedark + "/power.png'/>Power</div>"+
+			//"<div id='rcm_item_1' class='rcm_item' onClick=\"popup('audio'); closeRightClickMenu();\"><img class='rcm_icon' src='/assets/" + window.themedark + "/play_2.png'/>Audio Settings</div>"+
+			//"<div id='rcm_item_2' class='rcm_item' onClick=\"popup('player'); closeRightClickMenu();\"><img class='rcm_icon' src='/assets/" + window.themedark + "/wrench.png'/>Player Settings</div>"+
+			//"<div id='rcm_item_3' class='rcm_item' onClick=\"popup('pers'); closeRightClickMenu();\"><img class='rcm_icon' src='/assets/" + window.themedark + "/customise.png'/>Personalise</div>"+
+			"<div id='rcm_item_4' class='rcm_item' onClick=\"popup('about'); closeRightClickMenu();\"><img class='rcm_icon' src='/assets/" + window.themedark + "/about.png'/>About</div>"+
+			"<div id='rcm_item_5' class='rcm_item' onClick=\"popup('change'); closeRightClickMenu();\"><img class='rcm_icon' src='/assets/" + window.themedark + "/about.png'/>Changelog</div>"+
+			"<div id='rcm_item_6' class='rcm_item' onClick=\"popup('power'); closeRightClickMenu();\"><img class='rcm_icon' src='/assets/" + window.themedark + "/power.png'/>Power</div>"+
 		"</div>";
 			break;
 	}
@@ -46,6 +45,12 @@ function rightClickMenu(type){
 		window.rcm = false;
 		$(".rcm").remove();
 	});
+}
+
+function closeRightClickMenu(){
+	//This could probably be done nicer, but it works.
+	window.rcm = false;
+	$(".rcm").remove();
 }
 
 function popup(context, data){
