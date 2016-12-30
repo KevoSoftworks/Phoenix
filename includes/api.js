@@ -308,6 +308,8 @@ $(document).ready(function(){
 	
 	$(document).on("keypress", function(e){
 		if(e.keyCode === 0 || e.keyCode === 32){
+			//If we are inputting, do not play/pause
+			if($(e.target).is("input") || $(e.target).is("textarea")) return;
 			e.preventDefault();
 			if(window.state.state === "play"){
 				sendCmd("pause");
