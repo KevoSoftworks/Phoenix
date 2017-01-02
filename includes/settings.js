@@ -35,5 +35,9 @@ window.settings = {
 	
 	title: {
 		wait: 60 //Wait in seconds
+	}, 
+	
+	hamburger: {
+		addToggle: false
 	}
 };

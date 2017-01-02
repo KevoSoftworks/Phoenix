@@ -234,7 +234,7 @@ $(document).ready(function(){
 			window.hamburger_left_state = 1;
 			wwidth = $(window).width();
 			
-			if(window.isMobile||wwidth*0.5<500){
+			if(hamburgerFullscreen()){
 				width = wwidth - 32;
 			} else {
 				width = wwidth * 0.5;
@@ -259,7 +259,7 @@ $(document).ready(function(){
 			window.hamburger_right_state = 1;
 			wwidth = $(window).width();
 			
-			if(window.isMobile||wwidth*0.3<250){
+			if(hamburgerFullscreen()){
 				width = wwidth - 32;
 			} else {
 				width = wwidth * 0.3;
@@ -318,6 +318,15 @@ function toggle_hamburger_left(){
 
 function toggle_hamburger_right(){
 	window.hamburger_right_state ? $("#hamburger_right").trigger("mouseleave") : $("#hamburger_right").trigger("mouseenter");
+}
+
+function hamburgerFullscreen(){
+	wwidth = $(window).width();
+	if(window.isMobile||wwidth*0.5<500){
+		return true;
+	} else {
+		return false;
+	}
 }
 
 function sendShellCmd(cmd){
@@ -442,7 +451,7 @@ function fillPlaylist(){
 	});
 }
 
-function addSong(arrayString, key){
+function addSong(arrayString, key, count_id){
 	if(key > -2){
 		array = eval(arrayString);
 		songName = (key >-1 ? "/" + array[key] : "");
@@ -457,12 +466,18 @@ function addSong(arrayString, key){
 		data: {cmd: "add \"" + uri + "\""},
 		success: function(data){
 			if(data.stat){
-				$("#hamburger_right").trigger("mouseenter");
-				setTimeout(function(){
-					fillPlaylist();
+				if(hamburgerFullscreen() || settings.hamburger.addToggle){
+					$("#hamburger_right").trigger("mouseenter");
 					setTimeout(function(){
 						$("#hamburger_right").trigger("mouseleave");
 					},2000);
+				}
+				off = $("#folder_" + count_id).offset();
+				wid = $("#folder_" + count_id).width();
+				$("<div class='folder folder_overlay'>Added to playlist</div>").appendTo($("#hamburger_left")).css({"top": off.top + "px", "left": off.left + "px", "width": wid + "px"}).toggle().fadeIn(150).delay(400).fadeOut(150, function(){$(this).remove();});
+				
+				setTimeout(function(){
+					fillPlaylist();
 				},400);
 			}
 		},
@@ -473,7 +488,7 @@ function addSong(arrayString, key){
 	});
 }
 
-function addSongQuery(file, key){
+function addSongQuery(file, key, count_id){
 	uri = file + "/" + key;
 	$.ajax({
 		url: "/requests/mpd.php",
@@ -509,7 +524,7 @@ function changeMusicFolder(folder){
 				$("#folder_song_" + count).click({param: currentArray[key][1]}, function(e){addSong(e.data.param, '-2')});
 			} else {
 				$("#folders").append("<div class='folder folder_song' id='folder_song_" + count + "'>" + currentArray[key] + "</div>");
-				$("#folder_song_" + count).attr("onclick", "addSong('" + folder + "', '" + key + "')");
+				$("#folder_song_" + count).attr("onclick", "addSong('" + folder + "', '" + key + "', 'song_" + count + "')");
 			}
 		} else {
 			newFolder = folder + "[\"" + key + "\"]";
@@ -541,7 +556,7 @@ function changeMusicFolderQuery(){
 		item.pop();
 		item_folder = item.join("/");
 		$("#folders").append("<div class='folder_alt folder_song' id='folder_song_" + count + "'>" + name + "<div class='folder_song_extra'>" + item_folder + "</div></div>");
-		$("#folder_song_" + count).attr("onclick", "addSongQuery('" + item_folder + "', '" + name + "')");
+		$("#folder_song_" + count).attr("onclick", "addSongQuery('" + item_folder + "', '" + name + "', 'song_" + count + "')");
 		count++;
 	}
 	$("#folders").append("<div class='folder folder_back' id='folder_back'>Back</div>");
