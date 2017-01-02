@@ -143,31 +143,6 @@
 		}
 
 
-		
-/*
-	SCREENSAVER
-*/
-	/* Wrapper */
-	#screensaver{
-		width: 100%;
-		height: 100%;
-		position: absolute;
-		z-index: 10000;
-		top: 0;
-		left: 0;
-		background: inherit;
-		overflow: hidden;
-	}
-	
-	/* Image */
-	.screensaver_img{
-		width: 100%;
-		height: auto;
-		position: absolute;
-	}
-	
-
-
 /*
 	HAMBURGER MENUS
 */

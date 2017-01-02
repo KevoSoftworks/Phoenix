@@ -2,14 +2,20 @@
 	include "../includes/socket_api.php";
 	if(!clientInSameSubnet()) die(json_encode(["stat" => false, "msg" => "Not Local"]));
 	
-	$current_ver = "0.0.5";
+	$force_update = $_GET["force"];
+	
+	$current_ver = "0.0.6";
 	$manifest = file_get_contents("http://kevosoftworks.com/update/phoenix/manifest.json");
 	$data = (Array)json_decode($manifest);
 	
 	if(version_compare($data["update_ver"], $current_ver) == 1){
 		//Continue
 	} else {
-		die(json_encode(["stat" => false, "msg" => "No new version available"]));
+		if($force_update == 1){
+			die(json_encode(["stat" => false, "msg" => "No new version available"]));
+		} else {
+			//continue
+		}
 	}
 	
 	exec("sudo mkdir /var/www/tmp");

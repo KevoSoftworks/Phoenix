@@ -6,7 +6,7 @@ function rightClickMenuFolder(folder, folderElem){
 	//uri = encodeURIComponent(uri);
 	
 	rcm_div = "<div class='rcm'>"+
-			"<div id='rcm_item_1' class='rcm_item' onClick=\"addSong('" + uri + "', -2); closeRightClickMenu(); \">Play All</div>"+
+			"<div id='rcm_item_1' class='rcm_item' onClick=\"addSong('" + uri + "', -2, '" + folderElem + "'); closeRightClickMenu(); \">Play All</div>"+
 			"<div id='rcm_item_2' class='rcm_item' onClick=\"sendCmd('update " + uri + "'); closeRightClickMenu(); \">Update</div>"+
 			"<div id='rcm_item_3' class='rcm_item' onClick=\"popup('folder_prop','cmd=" + uri + "'); closeRightClickMenu(); \">Properties</div>"+
 		"</div>";

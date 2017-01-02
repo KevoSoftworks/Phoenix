@@ -6,8 +6,6 @@ $(document).ready(function(){
 	window.hasLogo = true;
 	window.errorCount = 0;
 	window.noAction = 0;
-	window.screensaverCounter = -1;
-	window.screensaverImagesHad = 0;
 	window.timebarIsDragging = false;
 	window.overflowSecs = 0;
 	window.secsRunning = 0;
@@ -64,7 +62,6 @@ $(document).ready(function(){
 	
 	$("#content1").css('max-height',$(window).height() - $("#currently_playing").height());
 	
-	$("#screensaver").toggle();
 	$("#phoenix_logo_fullscreen").height($(document).height());
 	(($(window).height() * 0.8) - 128) < 900 ? $(".logo_fullscreen").height(($(window).height() * 0.8) - 128) : $(".logo_fullscreen").height(900);
 	
@@ -92,9 +89,6 @@ $(document).ready(function(){
 		}
 		window.secsRunning++;
 		window.noAction++;
-		if(window.noAction > window.settings.screensaver.timeout){
-			screensaver(true);
-		}
 		$.ajax({
 			url: "/requests/mpd.php",
 			type: "GET",
@@ -240,7 +234,7 @@ $(document).ready(function(){
 			window.hamburger_left_state = 1;
 			wwidth = $(window).width();
 			
-			if(window.isMobile||wwidth*0.5<500){
+			if(hamburgerFullscreen()){
 				width = wwidth - 32;
 			} else {
 				width = wwidth * 0.5;
@@ -265,7 +259,7 @@ $(document).ready(function(){
 			window.hamburger_right_state = 1;
 			wwidth = $(window).width();
 			
-			if(window.isMobile||wwidth*0.3<250){
+			if(hamburgerFullscreen()){
 				width = wwidth - 32;
 			} else {
 				width = wwidth * 0.3;
@@ -300,9 +294,6 @@ $(document).ready(function(){
 	$(document).on("mousemove", function(e){
 		window.mouseX = e.pageX;
 		window.mouseY = e.pageY;
-		if(window.noAction >= window.settings.screensaver.timeout){
-			screensaver(false);
-		}
 		window.noAction = 0;
 	});
 	
@@ -329,30 +320,12 @@ function toggle_hamburger_right(){
 	window.hamburger_right_state ? $("#hamburger_right").trigger("mouseleave") : $("#hamburger_right").trigger("mouseenter");
 }
 
-function screensaver(enable){
-	if(enable){
-		if(window.screensaverCounter < 0){
-			window.screensaverImagesHad++;
-			window.screensaverImg = Math.floor(Math.random() * window.settings.screensaver.files.length);
-			$("#screensaver").append("<img style='z-index: " + window.screensaverImagesHad + "' id='screensaver_" + window.screensaverImg + "' class='screensaver_img' src='" + window.settings.screensaver.files[window.screensaverImg] + "' />");
-			$("#screensaver_" + window.screensaverImg).toggle().fadeIn(window.settings.screensaver.transition, function(){
-				$("#screensaver > *").not("#screensaver > #screensaver_" + window.screensaverImg).remove();
-			});
-			window.screensaverCounter = setInterval(function(){
-				window.screensaverImagesHad++;
-				window.screensaverImg = Math.floor(Math.random() * window.settings.screensaver.files.length);
-				$("#screensaver").append("<img style='z-index: " + window.screensaverImagesHad + "' id='screensaver_" + window.screensaverImg + "' class='screensaver_img' src='" + window.settings.screensaver.files[window.screensaverImg] + "' />");
-				$("#screensaver_" + window.screensaverImg).toggle().fadeIn(window.settings.screensaver.transition, function(){
-					$("#screensaver > *").not("#screensaver > #screensaver_" + window.screensaverImg).remove();
-				});
-			}, window.settings.screensaver.ticks);
-		}
-		$("#screensaver").fadeIn(window.settings.easing.screensaver.time);
-		$("#screensaver").height($(window).height());
+function hamburgerFullscreen(){
+	wwidth = $(window).width();
+	if(window.isMobile||wwidth*0.5<500){
+		return true;
 	} else {
-		$("#screensaver").fadeOut(window.settings.easing.screensaver.time);
-		clearInterval(window.screensaverCounter);
-		window.screensaverCounter = -1;
+		return false;
 	}
 }
 
@@ -478,7 +451,7 @@ function fillPlaylist(){
 	});
 }
 
-function addSong(arrayString, key){
+function addSong(arrayString, key, count_id){
 	if(key > -2){
 		array = eval(arrayString);
 		songName = (key >-1 ? "/" + array[key] : "");
@@ -493,12 +466,18 @@ function addSong(arrayString, key){
 		data: {cmd: "add \"" + uri + "\""},
 		success: function(data){
 			if(data.stat){
-				$("#hamburger_right").trigger("mouseenter");
-				setTimeout(function(){
-					fillPlaylist();
+				if(hamburgerFullscreen() || settings.hamburger.addToggle){
+					$("#hamburger_right").trigger("mouseenter");
 					setTimeout(function(){
 						$("#hamburger_right").trigger("mouseleave");
 					},2000);
+				}
+				off = $("#folder_" + count_id).offset();
+				wid = $("#folder_" + count_id).width();
+				$("<div class='folder folder_overlay'>Added to playlist</div>").appendTo($("#hamburger_left")).css({"top": off.top + "px", "left": off.left + "px", "width": wid + "px"}).toggle().fadeIn(150).delay(400).fadeOut(150, function(){$(this).remove();});
+				
+				setTimeout(function(){
+					fillPlaylist();
 				},400);
 			}
 		},
@@ -509,7 +488,7 @@ function addSong(arrayString, key){
 	});
 }
 
-function addSongQuery(file, key){
+function addSongQuery(file, key, count_id){
 	uri = file + "/" + key;
 	$.ajax({
 		url: "/requests/mpd.php",
@@ -545,7 +524,7 @@ function changeMusicFolder(folder){
 				$("#folder_song_" + count).click({param: currentArray[key][1]}, function(e){addSong(e.data.param, '-2')});
 			} else {
 				$("#folders").append("<div class='folder folder_song' id='folder_song_" + count + "'>" + currentArray[key] + "</div>");
-				$("#folder_song_" + count).attr("onclick", "addSong('" + folder + "', '" + key + "')");
+				$("#folder_song_" + count).attr("onclick", "addSong('" + folder + "', '" + key + "', 'song_" + count + "')");
 			}
 		} else {
 			newFolder = folder + "[\"" + key + "\"]";
@@ -577,7 +556,7 @@ function changeMusicFolderQuery(){
 		item.pop();
 		item_folder = item.join("/");
 		$("#folders").append("<div class='folder_alt folder_song' id='folder_song_" + count + "'>" + name + "<div class='folder_song_extra'>" + item_folder + "</div></div>");
-		$("#folder_song_" + count).attr("onclick", "addSongQuery('" + item_folder + "', '" + name + "')");
+		$("#folder_song_" + count).attr("onclick", "addSongQuery('" + item_folder + "', '" + name + "', 'song_" + count + "')");
 		count++;
 	}
 	$("#folders").append("<div class='folder folder_back' id='folder_back'>Back</div>");

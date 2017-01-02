@@ -55,6 +55,21 @@
 	background-color: <?php echo $theme->color->accent; ?>;
 }
 
+/* Folder Item Confirmation Overlay */
+.folder_overlay{
+	position: absolute; /* Position is set by JS */
+	background-image: url("/assets/<?php echo $theme->color->dark; ?>/check.png");
+	background-size: 32px 32px;
+	background-repeat: no-repeat;
+	background-color: green;
+	z-index: 50;
+}
+
+/* Folder Item Confirmation Overlay Hover */
+.folder_overlay:hover{
+	background-color: green !important;
+}
+
 /* Folder Song Specification */
 .folder_song{
 	background-image: url("/assets/<?php echo $theme->color->dark; ?>/music.png");

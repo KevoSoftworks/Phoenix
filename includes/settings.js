@@ -23,25 +23,6 @@ window.settings = {
 		["Arrow Classic Rock", "http://91.221.151.155:80/"]
 	],
 	
-	screensaver: {
-		timeout: 3*60, //timeout in seconds
-		type: "slideshow",
-		ticks: 30000, //ticks in milliseconds
-		transition: 5000, //Transition in milliseconds
-		files: [
-			"/assets/screensaver/1.jpg",
-			"/assets/screensaver/2.jpg",
-			"/assets/screensaver/3.jpg",
-			"/assets/screensaver/4.jpg",
-			"/assets/screensaver/5.jpg",
-			"/assets/screensaver/6.jpg",
-			"/assets/screensaver/7.jpg",
-			"/assets/screensaver/8.jpg",
-			"/assets/screensaver/9.jpg",
-			"/assets/screensaver/10.jpg",
-		]
-	},
-	
 	textual: {
 		song: {
 			overflow: {
@@ -54,5 +35,9 @@ window.settings = {
 	
 	title: {
 		wait: 60 //Wait in seconds
+	}, 
+	
+	hamburger: {
+		addToggle: false
 	}
 };

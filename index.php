@@ -50,10 +50,6 @@
 				<img src='assets/loading.gif' />
 			</div>
 			
-			<div id="screensaver">
-			
-			</div>
-			
 			<div id="hamburger_left">
 				<button style="height: 115px; position: absolute; right: 0" onClick="toggle_hamburger_left()"></button>
 				<div class='hamburger_wrap'>
