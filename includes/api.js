@@ -6,8 +6,6 @@ $(document).ready(function(){
 	window.hasLogo = true;
 	window.errorCount = 0;
 	window.noAction = 0;
-	window.screensaverCounter = -1;
-	window.screensaverImagesHad = 0;
 	window.timebarIsDragging = false;
 	window.overflowSecs = 0;
 	window.secsRunning = 0;
@@ -64,7 +62,6 @@ $(document).ready(function(){
 	
 	$("#content1").css('max-height',$(window).height() - $("#currently_playing").height());
 	
-	$("#screensaver").toggle();
 	$("#phoenix_logo_fullscreen").height($(document).height());
 	(($(window).height() * 0.8) - 128) < 900 ? $(".logo_fullscreen").height(($(window).height() * 0.8) - 128) : $(".logo_fullscreen").height(900);
 	
@@ -92,9 +89,6 @@ $(document).ready(function(){
 		}
 		window.secsRunning++;
 		window.noAction++;
-		if(window.noAction > window.settings.screensaver.timeout){
-			screensaver(true);
-		}
 		$.ajax({
 			url: "/requests/mpd.php",
 			type: "GET",
@@ -300,9 +294,6 @@ $(document).ready(function(){
 	$(document).on("mousemove", function(e){
 		window.mouseX = e.pageX;
 		window.mouseY = e.pageY;
-		if(window.noAction >= window.settings.screensaver.timeout){
-			screensaver(false);
-		}
 		window.noAction = 0;
 	});
 	
@@ -327,33 +318,6 @@ function toggle_hamburger_left(){
 
 function toggle_hamburger_right(){
 	window.hamburger_right_state ? $("#hamburger_right").trigger("mouseleave") : $("#hamburger_right").trigger("mouseenter");
-}
-
-function screensaver(enable){
-	if(enable){
-		if(window.screensaverCounter < 0){
-			window.screensaverImagesHad++;
-			window.screensaverImg = Math.floor(Math.random() * window.settings.screensaver.files.length);
-			$("#screensaver").append("<img style='z-index: " + window.screensaverImagesHad + "' id='screensaver_" + window.screensaverImg + "' class='screensaver_img' src='" + window.settings.screensaver.files[window.screensaverImg] + "' />");
-			$("#screensaver_" + window.screensaverImg).toggle().fadeIn(window.settings.screensaver.transition, function(){
-				$("#screensaver > *").not("#screensaver > #screensaver_" + window.screensaverImg).remove();
-			});
-			window.screensaverCounter = setInterval(function(){
-				window.screensaverImagesHad++;
-				window.screensaverImg = Math.floor(Math.random() * window.settings.screensaver.files.length);
-				$("#screensaver").append("<img style='z-index: " + window.screensaverImagesHad + "' id='screensaver_" + window.screensaverImg + "' class='screensaver_img' src='" + window.settings.screensaver.files[window.screensaverImg] + "' />");
-				$("#screensaver_" + window.screensaverImg).toggle().fadeIn(window.settings.screensaver.transition, function(){
-					$("#screensaver > *").not("#screensaver > #screensaver_" + window.screensaverImg).remove();
-				});
-			}, window.settings.screensaver.ticks);
-		}
-		$("#screensaver").fadeIn(window.settings.easing.screensaver.time);
-		$("#screensaver").height($(window).height());
-	} else {
-		$("#screensaver").fadeOut(window.settings.easing.screensaver.time);
-		clearInterval(window.screensaverCounter);
-		window.screensaverCounter = -1;
-	}
 }
 
 function sendShellCmd(cmd){
