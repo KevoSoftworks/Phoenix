@@ -466,7 +466,7 @@ function addSong(arrayString, key, count_id){
 		data: {cmd: "add \"" + uri + "\""},
 		success: function(data){
 			if(data.stat){
-				if(hamburgerFullscreen() || settings.hamburger.addToggle){
+				if(!hamburgerFullscreen() && settings.hamburger.addToggle){
 					$("#hamburger_right").trigger("mouseenter");
 					setTimeout(function(){
 						$("#hamburger_right").trigger("mouseleave");
@@ -496,12 +496,18 @@ function addSongQuery(file, key, count_id){
 		data: {cmd: "add \"" + uri + "\""},
 		success: function(data){
 			if(data.stat){
-				$("#hamburger_right").trigger("mouseenter");
-				setTimeout(function(){
-					fillPlaylist();
+				if(!hamburgerFullscreen() && settings.hamburger.addToggle){
+					$("#hamburger_right").trigger("mouseenter");
 					setTimeout(function(){
 						$("#hamburger_right").trigger("mouseleave");
 					},2000);
+				}
+				off = $("#folder_" + count_id).offset();
+				wid = $("#folder_" + count_id).width();
+				$("<div class='folder folder_overlay'>Added to playlist</div>").appendTo($("#hamburger_left")).css({"top": off.top + "px", "left": off.left + "px", "width": wid + "px"}).toggle().fadeIn(150).delay(400).fadeOut(150, function(){$(this).remove();});
+				
+				setTimeout(function(){
+					fillPlaylist();
 				},400);
 			}
 		},
