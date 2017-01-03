@@ -27,15 +27,15 @@
 			success: function(data){
 				d = JSON.parse(data);
 				if(d.stat){
-					window.location("/");
+					window.location.replace("/");
 				} else {
 					alert("Something happened! Update aborted.");
-					window.location("/");
+					window.location.replace("/");
 				}
 			},
 			error: function(){
 				alert("Something happened! Update aborted.");
-				window.location("/");				
+				window.location.replace("/");				
 			}
 		});
 	});
