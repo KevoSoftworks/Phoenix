@@ -88,30 +88,15 @@
 			margin-top: 8px;
 		}
 		
-		/* Previous Song Button*/
-		.prev{
-			background-image: url("/assets/<?php echo $theme->color->dark; ?>/prev.png");
-			background-size: 48px 48px;
-			background-repeat: no-repeat;
+		/* Button not active */
+		.btn-non-active{
+			color: rgba(calc(255 * <?php echo $theme->color->dark; ?>), calc(255 * <?php echo $theme->color->dark; ?>), calc(255 * <?php echo $theme->color->dark; ?>), calc(0.26 + 0.04 * <?php echo $theme->color->dark;?>)) !important;
 		}
 		
-		/* Next Song Button*/
-		.next{
-			background-image: url("/assets/<?php echo $theme->color->dark; ?>/next.png");
-			background-size: 48px 48px;
-			background-repeat: no-repeat;
-		}
-		
-		/* Play Button */
-		.play{
-			background-image: url("/assets/<?php echo $theme->color->dark; ?>/play.png");
-			background-size: 48px 48px;
-			background-repeat: no-repeat;
-		}
-		
-		/* Pause Button */
-		.pause{
-			background-image: url("/assets/<?php echo $theme->color->dark; ?>/pause.png") !important;
+		/* Previous, Next, Play, Pause, Shuffle and Repeat Buttons*/
+		.prev, .next, .play, .pause, .shuffle, .repeat, .repeat-one{
+			font-size: 48px;
+			color: rgba(calc(255 * <?php echo $theme->color->dark; ?>), calc(255 * <?php echo $theme->color->dark; ?>), calc(255 * <?php echo $theme->color->dark; ?>), calc(0.54 + 0.46 * <?php echo $theme->color->dark;?>));
 		}
 	
 	/*

@@ -30,6 +30,8 @@
 			window.context = JSON.parse('<?php echo trim(preg_replace('/\s+/', ' ', file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/includes/context/context.json")));?>');
 		</script>
 		
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		
 		<link rel='stylesheet' type='text/css' href='includes/stylesheets/style.php' />
 		<link rel='stylesheet' type='text/css' href='includes/stylesheets/player.php' />
 		<link rel='stylesheet' type='text/css' href='includes/stylesheets/ui.php' />
@@ -98,9 +100,11 @@
 					<div id="timebar" style="width: 0px"></div>
 				</div>
 				<div id="song_control">
-					<button class='prev' onClick="prev()"></button>
-					<button class='play' onClick="play()"></button>
-					<button class='next' onClick="next()"></button>
+					<button class='shuffle' onClick="shuffle()"><i class='material-icons'>shuffle</i></button>
+					<button class='prev' onClick="prev()"><i class="material-icons">skip_previous</i></button>
+					<button class='play' onClick="play()"><i class="material-icons">play_circle_filled</i></button>
+					<button class='next' onClick="next()"><i class="material-icons">skip_next</i></button>
+					<button class='repeat' onClick="repeat()"><i class="material-icons">repeat</i></button>
 				</div>
 				<div id="volume_control">
 					<button class='vol_min' onClick="vol(-1)"></button>
@@ -110,43 +114,43 @@
 				<div id='eq_control'>
 					<div class='eq_control_wrap'>
 						<div class='eq_range_wrap'>
-							<input type='range' id='eq_1' data-eq='01. 31 Hz' min='0' max='100'/><br/>
+							<input type='range' id='eq_1' data-eq='01. 31 Hz' min='0' max='4750' step='47.5'/><br/>
 							<span>31</span>
 						</div>
 						<div class='eq_range_wrap'>
-							<input type='range' id='eq_2' data-eq='02. 63 Hz' min='0' max='100'/><br/>
+							<input type='range' id='eq_2' data-eq='02. 63 Hz' min='0' max='4750' step='47.5'/><br/>
 							<span>63</span>
 						</div>
 						<div class='eq_range_wrap'>
-							<input type='range' id='eq_3' data-eq='03. 125 Hz' min='0' max='100'/><br/>
+							<input type='range' id='eq_3' data-eq='03. 125 Hz' min='0' max='4750' step='47.5'/><br/>
 							<span>125</span>							
 						</div>
 						<div class='eq_range_wrap'>
-							<input type='range' id='eq_4' data-eq='04. 250 Hz' min='0' max='100'/><br/>
+							<input type='range' id='eq_4' data-eq='04. 250 Hz' min='0' max='4750' step='47.5'/><br/>
 							<span>250</span>
 						</div>
 						<div class='eq_range_wrap'>
-							<input type='range' id='eq_5' data-eq='05. 500 Hz' min='0' max='100'/><br/>
+							<input type='range' id='eq_5' data-eq='05. 500 Hz' min='0' max='4750' step='47.5'/><br/>
 							<span>500</span>
 						</div>
 						<div class='eq_range_wrap'>
-							<input type='range' id='eq_6' data-eq='06. 1 kHz' min='0' max='100'/><br/>
+							<input type='range' id='eq_6' data-eq='06. 1 kHz' min='0' max='4750' step='47.5'/><br/>
 							<span>1k</span>
 						</div>
 						<div class='eq_range_wrap'>
-							<input type='range' id='eq_7' data-eq='07. 2 kHz' min='0' max='100'/><br/>
+							<input type='range' id='eq_7' data-eq='07. 2 kHz' min='0' max='4750' step='47.5'/><br/>
 							<span>2k</span>
 						</div>
 						<div class='eq_range_wrap'>
-							<input type='range' id='eq_8' data-eq='08. 4 kHz' min='0' max='100'/><br/>
+							<input type='range' id='eq_8' data-eq='08. 4 kHz' min='0' max='4750' step='47.5'/><br/>
 							<span>4k</span>
 						</div>
 						<div class='eq_range_wrap'>
-							<input type='range' id='eq_9' data-eq='09. 8 kHz' min='0' max='100'/><br/>
+							<input type='range' id='eq_9' data-eq='09. 8 kHz' min='0' max='4750' step='47.5'/><br/>
 							<span>8k</span>
 						</div>
 						<div class='eq_range_wrap'>
-							<input type='range' id='eq_10' data-eq='10. 16 kHz' min='0' max='100'/><br/>
+							<input type='range' id='eq_10' data-eq='10. 16 kHz' min='0' max='4750' step='47.5'/><br/>
 							<span>16k</span>
 						</div>
 					</div>

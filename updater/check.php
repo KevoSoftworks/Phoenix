@@ -1,5 +1,5 @@
 <?php
-	$current_ver = "0.0.6";
+	$current_ver = "0.0.8";
 	$manifest = file_get_contents("http://kevosoftworks.com/update/phoenix/manifest.json");
 	$data = (Array)json_decode($manifest);
 	

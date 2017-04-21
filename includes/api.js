@@ -105,6 +105,8 @@ $(document).ready(function(){
 					
 					if(response[0].state === "play"){
 						$(".play").addClass("pause");
+						$(".play .material-icons").text("pause_circle_filled");
+						
 						if(!window.timebarIsDragging) $("#timebar_current").text(toTimestamp(response[0].time.elapsed));
 						$("#timebar_max").text(toTimestamp(response[0].time.length));
 						if(!window.timebarIsDragging) $("#timebar").stop().animate({"width": response[0].time.elapsed_percent + "%"}, {"duration": window.settings.easing.seekbar.time, "easing": window.settings.easing.seekbar.type});
@@ -122,6 +124,8 @@ $(document).ready(function(){
 						}
 					} else if(response[0].state === "pause"){
 						$(".play").removeClass("pause");
+						$(".play .material-icons").text("play_circle_filled");
+						
 						if($("#song").text().length < 2){
 							$("#song").text("Paused");
 						}
@@ -132,6 +136,8 @@ $(document).ready(function(){
 						$("#audio_info").text("Bitrate: " + response[0].audio.bitrate + " kbps; Sample Rate: " + response[0].audio.sample_rate + " Hz");
 					} else {
 						$(".play").removeClass("pause");
+						$(".play .material-icons").text("play_circle_filled");
+						
 						if(!window.timebarIsDragging) $("#timebar_current").text(toTimestamp(0));
 						$("#timebar_max").text(toTimestamp(0));
 						if(!window.timebarIsDragging) $("#timebar").stop().animate({"width": 100 + "%"}, {"duration": window.settings.easing.seekbar.time, "easing": window.settings.easing.seekbar.type});
@@ -160,6 +166,26 @@ $(document).ready(function(){
 					
 					if(response[0].playlistlength != $(".playlist_song").length && !window.isGettingPlaylist){
 						fillPlaylist();
+					}
+					
+					if(parseInt(response[0].random) == 1){
+						$(".shuffle").removeClass("btn-non-active");
+					} else {
+						$(".shuffle").addClass("btn-non-active");
+					}
+					
+					if(parseInt(response[0].repeat) == 1){
+						$(".repeat").removeClass("btn-non-active");
+					} else {
+						$(".repeat").addClass("btn-non-active");
+					}
+					
+					if(parseInt(response[0].single) == 0){
+						$(".repeat").removeClass("repeat-one");
+						$(".repeat .material-icons").text("repeat");
+					} else {
+						$(".repeat").addClass("repeat-one");
+						$(".repeat .material-icons").text("repeat_one");
 					}
 					
 					if(window.hasLogo && window.errorCount == 0){
@@ -279,7 +305,7 @@ $(document).ready(function(){
 	});
 	
 	$("input[type='range']").change(function(){
-		setEq($(this).val(), $(this).data("eq"));
+		setEq(Math.pow($(this).val(), 1/1.9), $(this).data("eq"));
 	});
 	
 	$(document).on("mouseup", function(){
@@ -466,7 +492,7 @@ function addSong(arrayString, key, count_id){
 		data: {cmd: "add \"" + uri + "\""},
 		success: function(data){
 			if(data.stat){
-				if(hamburgerFullscreen() || settings.hamburger.addToggle){
+				if(!hamburgerFullscreen() && settings.hamburger.addToggle){
 					$("#hamburger_right").trigger("mouseenter");
 					setTimeout(function(){
 						$("#hamburger_right").trigger("mouseleave");
@@ -496,12 +522,18 @@ function addSongQuery(file, key, count_id){
 		data: {cmd: "add \"" + uri + "\""},
 		success: function(data){
 			if(data.stat){
-				$("#hamburger_right").trigger("mouseenter");
-				setTimeout(function(){
-					fillPlaylist();
+				if(!hamburgerFullscreen() && settings.hamburger.addToggle){
+					$("#hamburger_right").trigger("mouseenter");
 					setTimeout(function(){
 						$("#hamburger_right").trigger("mouseleave");
 					},2000);
+				}
+				off = $("#folder_" + count_id).offset();
+				wid = $("#folder_" + count_id).width();
+				$("<div class='folder folder_overlay'>Added to playlist</div>").appendTo($("#hamburger_left")).css({"top": off.top + "px", "left": off.left + "px", "width": wid + "px"}).toggle().fadeIn(150).delay(400).fadeOut(150, function(){$(this).remove();});
+				
+				setTimeout(function(){
+					fillPlaylist();
 				},400);
 			}
 		},
@@ -612,6 +644,26 @@ function sendCmd(cmd){
 	});
 }
 
+function shuffle(){
+	if(parseInt(window.response[0].random) == 0){
+		cmd = "random 1";
+	} else {
+		cmd = "random 0";
+	}
+	
+	$.ajax({
+		url: "/requests/mpd.php",
+		type: "GET",
+		data: {cmd: cmd},
+		success: function(data){
+			
+		},
+		error: function(data){
+			
+		}
+	});
+}
+
 function prev(){
 	$.ajax({
 		url: "/requests/mpd.php",
@@ -660,6 +712,49 @@ function next(){
 	});
 }
 
+function repeat(){
+	if(parseInt(window.response[0].repeat) == 0){
+		cmd1 = "repeat 1";
+		cmd2 = false;
+	} else {
+		if(parseInt(window.response[0].single) == 0){
+			cmd1 = false;
+			cmd2 = "single 1";
+		} else {
+			cmd1 = "repeat 0";
+			cmd2 = "single 0";
+		}
+	}
+	
+	if(cmd1){
+		$.ajax({
+			url: "/requests/mpd.php",
+			type: "GET",
+			data: {cmd: cmd1},
+			success: function(data){
+				
+			},
+			error: function(data){
+				
+			}
+		});
+	}
+	
+	if(cmd2){
+		$.ajax({
+			url: "/requests/mpd.php",
+			type: "GET",
+			data: {cmd: cmd2},
+			success: function(data){
+				
+			},
+			error: function(data){
+				
+			}
+		});
+	}
+}
+
 function vol(amount){
 	$("#vol_vol").text(Number($("#vol_vol").text()) + amount);
 	$.ajax({
@@ -694,7 +789,7 @@ function getEq(){
 		success: function(data){
 			res = data.result;
 			for(i = 0; i < res.length; i++){
-				$("#eq_" + (i+1)).val(res[i]);
+				$("#eq_" + (i+1)).val(Math.pow(res[i],1.9));
 			}
 		},
 		error: function(data){
