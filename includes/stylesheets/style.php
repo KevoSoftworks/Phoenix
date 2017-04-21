@@ -45,6 +45,10 @@
 		font-style: normal;
 	}
 	
+	.material-icons{
+		font-size: 48px !important;
+	}
+	
 	
 	
 /*
