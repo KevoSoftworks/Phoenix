@@ -90,6 +90,9 @@
 			</div>
 			
 			<div id="currently_playing">
+				<div id='albumart'>
+					
+				</div>
 				<br/>
 				<h5>Currently Playing:</h5>
 				<h1 id="song"></h1>
@@ -113,50 +116,6 @@
 					<button class='vol_min' onClick="vol(-1)"></button>
 					<div class='vol_vol' id="vol_vol"></div>
 					<button class='vol_plus' onClick="vol(1)"></button>
-				</div>
-				<div id='eq_control'>
-					<div class='eq_control_wrap'>
-						<div class='eq_range_wrap'>
-							<input type='range' id='eq_1' data-eq='01. 31 Hz' min='0' max='4750' step='47.5'/><br/>
-							<span>31</span>
-						</div>
-						<div class='eq_range_wrap'>
-							<input type='range' id='eq_2' data-eq='02. 63 Hz' min='0' max='4750' step='47.5'/><br/>
-							<span>63</span>
-						</div>
-						<div class='eq_range_wrap'>
-							<input type='range' id='eq_3' data-eq='03. 125 Hz' min='0' max='4750' step='47.5'/><br/>
-							<span>125</span>							
-						</div>
-						<div class='eq_range_wrap'>
-							<input type='range' id='eq_4' data-eq='04. 250 Hz' min='0' max='4750' step='47.5'/><br/>
-							<span>250</span>
-						</div>
-						<div class='eq_range_wrap'>
-							<input type='range' id='eq_5' data-eq='05. 500 Hz' min='0' max='4750' step='47.5'/><br/>
-							<span>500</span>
-						</div>
-						<div class='eq_range_wrap'>
-							<input type='range' id='eq_6' data-eq='06. 1 kHz' min='0' max='4750' step='47.5'/><br/>
-							<span>1k</span>
-						</div>
-						<div class='eq_range_wrap'>
-							<input type='range' id='eq_7' data-eq='07. 2 kHz' min='0' max='4750' step='47.5'/><br/>
-							<span>2k</span>
-						</div>
-						<div class='eq_range_wrap'>
-							<input type='range' id='eq_8' data-eq='08. 4 kHz' min='0' max='4750' step='47.5'/><br/>
-							<span>4k</span>
-						</div>
-						<div class='eq_range_wrap'>
-							<input type='range' id='eq_9' data-eq='09. 8 kHz' min='0' max='4750' step='47.5'/><br/>
-							<span>8k</span>
-						</div>
-						<div class='eq_range_wrap'>
-							<input type='range' id='eq_10' data-eq='10. 16 kHz' min='0' max='4750' step='47.5'/><br/>
-							<span>16k</span>
-						</div>
-					</div>
 				</div>
 			</div>
 			

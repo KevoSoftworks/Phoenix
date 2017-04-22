@@ -48,6 +48,7 @@
 			}
 			
 			exec("sudo rm -rf /var/www/tmp");
+			exec("sudo chown -R www-data:www-data /var/www");
 			return true;
 		}
 	}

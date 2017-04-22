@@ -1,2 +1,21 @@
-<div class='popup_button' onClick="$('.popup').remove()">Save</div>
+<div class='popup_button' onClick="pers_save();">Save</div>
 <div class='popup_button' onClick="$('.popup').remove()">Cancel</div>
+
+<script type='text/javascript'>
+	function pers_save(){
+		name = $("#pers-name").val();
+		colour = $("#pers-colour").val();
+		
+		$.ajax({
+			url: "/requests/pers.php",
+			type: "GET",
+			data: {name: name, colour: colour},
+			success: function(data){
+				 location.reload();
+			},
+			error: function(data){
+				$('.popup').remove();
+			}
+		});
+	}
+</script>
