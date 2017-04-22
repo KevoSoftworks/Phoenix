@@ -68,18 +68,7 @@ $(document).ready(function(){
 	getEq();
 	
 	$("#phoenix_logo_status").text("Checking for updates...");
-	$.ajax({
-		url: "/updater/check.php",
-		success: function(data){
-			d = JSON.parse(data);
-			if(d.update){
-				popup("update_avail", "ver=" + d.new_ver);
-			}
-		},
-		error: function(){
-			
-		}
-	});
+	if(window.update.update) popup("update_avail", "ver=" + window.update["new-ver"]);
 	
 	
 	$("#phoenix_logo_status").text("Connecting...");

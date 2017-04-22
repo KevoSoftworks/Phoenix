@@ -1,6 +1,11 @@
+<?php
+	require_once("../updater.php");
+	$updater = new Updater();
+?>
+
 <h1>Phoenix Music Player</h1>
-<h3>Version 0.0.8</h3>
-<h5>21-04-2017</h5>
+<h3>Version <?php echo $updater->getCurrentVersion(); ?></h3>
+<h5><?php echo $updater->getCurrentDate(); ?></h5>
 <h5>Developed by Kevosoftworks, 2016-2017</h5>
 <br/>
 <table>

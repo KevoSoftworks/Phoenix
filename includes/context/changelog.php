@@ -1,11 +1,21 @@
+<?php
+	require_once("../updater.php");
+	$updater = new Updater();
+?>
+
 ==Phoenix Music Player Changelog==<br/>
-+Current Version: 0.0.8+<br/>
--Build Date: 21-04-2017-<br/>
++Current Version: <?php echo $updater->getCurrentVersion(); ?>+<br/>
+-Build Date: <?php echo $updater->getCurrentDate(); ?>-<br/>
 <br/>
 + are additions<br/>
 = are fixes<br/>
 - are removals<br/>
 ..........................<br/>
+Version 0.0.9, 22-04-2017:<br/>
++Better updater API<br/>
+=Hardcoded version numbers<br/>
+=Caching problems after updates<br/>
+<br/>
 Version 0.0.8, 21-04-2017:<br/>
 +Added shuffle and repeat/repeat-one buttons<br/>
 =Graphic EQ now scales differently, allowing more precision in higher boosts<br/>
@@ -39,5 +49,5 @@ Version 0.0.3, 20-08-2016:<br/>
 Version 0.0.2, 19-08-2016:<br/>
 =Better support for popup boxes<br/>
 <br/>
-Version 0.0.1, 9-06-2016:<br/>
+Version 0.0.1, 09-06-2016:<br/>
 +Initial release<br/>

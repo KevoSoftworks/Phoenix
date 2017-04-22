@@ -1,12 +1,14 @@
 <?php
 	require_once("includes/db.php");
 	require_once("includes/socket_api.php");
+	require_once("includes/updater.php");
 	header("Expires: Thu, 19 Nov 1981 08:52:00 GMT");
 	header("Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0");
 	header("Pragma: no-cache");
 	$debug_hidden = "display:none;";
 	
 	$settings = new Settings();
+	$updater = new Updater();
 	
 	$name = $settings->getNode("pref.name")["value"];
 	$theme = new Theme();
@@ -18,25 +20,26 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<script src='includes/settings.js'></script>
-		<script src='includes/jquery.js'></script>
-		<script src='includes/jquery-ui.js'></script>
-		<script src='includes/api.js'></script>
+		<script src='includes/settings.js?<?php echo $updater->getCurrentVersion() ?>'></script>
+		<script src='includes/jquery.js?<?php echo $updater->getCurrentVersion() ?>'></script>
+		<script src='includes/jquery-ui.js?<?php echo $updater->getCurrentVersion() ?>'></script>
+		<script src='includes/api.js?<?php echo $updater->getCurrentVersion() ?>'></script>
 		
-		<script src='includes/scripts/ui.js'></script>
+		<script src='includes/scripts/ui.js?<?php echo $updater->getCurrentVersion() ?>'></script>
 		
 		<script type="text/javascript">
 			window.themedark = "<?php echo $theme->color->dark; ?>";
 			window.context = JSON.parse('<?php echo trim(preg_replace('/\s+/', ' ', file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/includes/context/context.json")));?>');
+			window.update = {"update": <?php echo ($updater->hasUpdate() ? 'true' : 'false') ?>, "new-ver": "<?php echo $updater->getNewVersion()?>"};
 		</script>
 		
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		
-		<link rel='stylesheet' type='text/css' href='includes/stylesheets/style.php' />
-		<link rel='stylesheet' type='text/css' href='includes/stylesheets/player.php' />
-		<link rel='stylesheet' type='text/css' href='includes/stylesheets/ui.php' />
-		<link rel='stylesheet' type='text/css' href='includes/stylesheets/folder.php' />
-		<link rel='stylesheet' type='text/css' href='includes/stylesheets/playlist.php' />
+		<link rel='stylesheet' type='text/css' href='includes/stylesheets/style.php?<?php echo $updater->getCurrentVersion() ?>' />
+		<link rel='stylesheet' type='text/css' href='includes/stylesheets/player.php?<?php echo $updater->getCurrentVersion() ?>' />
+		<link rel='stylesheet' type='text/css' href='includes/stylesheets/ui.php?<?php echo $updater->getCurrentVersion() ?>' />
+		<link rel='stylesheet' type='text/css' href='includes/stylesheets/folder.php?<?php echo $updater->getCurrentVersion() ?>' />
+		<link rel='stylesheet' type='text/css' href='includes/stylesheets/playlist.php?<?php echo $updater->getCurrentVersion() ?>' />
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
 		<link rel="shortcut icon" type="image/png" href="assets/logo.png"/>
