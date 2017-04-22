@@ -2,7 +2,7 @@
 	"popup": {
 		"about": {
 			"header": "About",
-			"content": "about.html",
+			"content": "about.php",
 			"footer": "about_footer.html"
 		},
 		"power": {
@@ -27,7 +27,7 @@
 		},
 		"change":{
 			"header": "Changelog",
-			"content": "changelog.html",
+			"content": "changelog.php",
 			"footer": "about_footer.html"
 		},
 		"folder_prop":{
