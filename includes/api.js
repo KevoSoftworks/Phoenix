@@ -65,8 +65,6 @@ $(document).ready(function(){
 	$("#phoenix_logo_fullscreen").height($(document).height());
 	(($(window).height() * 0.8) - 128) < 900 ? $(".logo_fullscreen").height(($(window).height() * 0.8) - 128) : $(".logo_fullscreen").height(900);
 	
-	getEq();
-	
 	$("#phoenix_logo_status").text("Checking for updates...");
 	if(window.update.update) popup("update_avail", "ver=" + window.update["new-ver"]);
 	
@@ -110,6 +108,7 @@ $(document).ready(function(){
 						if(window.currentSongNum !== window.currentSong[0].Pos && !window.songIsChanging){
 							changePlaylistSelected(window.currentSongNum, window.currentSong[0].Pos);
 							window.currentSongNum = window.currentSong[0].Pos;
+							getAlbumArt();
 						}
 					} else if(response[0].state === "pause"){
 						$(".play").removeClass("pause");
@@ -291,10 +290,6 @@ $(document).ready(function(){
 			$("#hamburger_right").removeClass("extended");
 			$("#hamburger_right").stop().animate({"width": "32px"}, function(){window.hamburger_right_is_running = false;});
 		}
-	});
-	
-	$("input[type='range']").change(function(){
-		setEq(Math.pow($(this).val(), 1/1.9), $(this).data("eq"));
 	});
 	
 	$(document).on("mouseup", function(){
@@ -607,7 +602,7 @@ function changePlaylistSong(sid){
 		type: "GET",
 		data: {cmd: "play " + sid},
 		success: function(data){
-			
+			setTimeout(function(){getAlbumArt()},1250);
 		},
 		error: function(data){
 			window.songIsChanging = false;
@@ -616,6 +611,31 @@ function changePlaylistSong(sid){
 	});
 	window.currentSongNum = sid;
 	window.songIsChanging = false;
+}
+
+function getAlbumArt(){
+	$.ajax({
+		url: "https://ws.audioscrobbler.com/2.0/",
+		type: "GET",
+		data: {
+			method: "album.getinfo",
+			api_key: "49770de2ce91d8036a5637de5a645acb",
+			artist: response[1][0].Artist,
+			album: response[1][0].Album,
+			format: "json"
+		},
+		success: function(data){
+			if(typeof data.album !== "undefined"){
+				$("#albumart").html("<img src='" + data.album.image[3]["#text"] + "'/>");
+			} else {
+				$("#albumart").html("");
+			}
+		},
+		error: function(data){
+			$("#albumart").html("");
+		}
+		
+	});
 }
 
 function sendCmd(cmd){

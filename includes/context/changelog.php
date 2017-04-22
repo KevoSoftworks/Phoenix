@@ -11,6 +11,14 @@
 = are fixes<br/>
 - are removals<br/>
 ..........................<br/>
+Version 0.0.10, 22-04-2017:<br/>
++Reintroduced the Personalisation settings<br/>
++Album art for compatible songs via Last.fm<br/>
+=RCM persisting on touch devices<br/>
+=RCM falling off-screen when the cursor is too close to a screen edge<br/>
+=Moved the graphic EQ to the settings menu<br/>
+=Proper user groups being set after update<br/>
+<br/>
 Version 0.0.9, 22-04-2017:<br/>
 +Better updater API<br/>
 =Hardcoded version numbers<br/>

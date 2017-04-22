@@ -1,5 +1,13 @@
 window.rcm = false;
 
+$(document).on("click", function(e){
+	if(window.rcm){
+		if($(e.target).prop('nodeName') != "BUTTON" && !$(e.target).hasClass("rcm_item") && !$(e.target).hasClass("folder_dir_playall")){
+			closeRightClickMenu();
+		}
+	} 
+});
+
 function rightClickMenuFolder(folder, folderElem){
 	uri = folder.replace("window.folders.global", "").replace(/\[\"/g, "").replace(/\"\]/g, "/");
 	uri = uri.substr(0, uri.length - 1);
@@ -12,9 +20,17 @@ function rightClickMenuFolder(folder, folderElem){
 		"</div>";
 	window.rcm = true;
 	$(document.body).append(rcm_div);
+	tw = $(".rcm").width();
+	th = $(".rcm").height();
+	tt = (window.mouseY - 10);
+	tl = (window.mouseX - 10);
+	
+	if(tl + tw > $(window).width()) tl = $(window).width() - tw;
+	if(tt + th > $(window).height()) tt = $(window).height() - th;
+	
 	$(".rcm").css({
-		"top": (window.mouseY - 10) + "px",
-		"left": (window.mouseX - 10) + "px"
+		"top": tt + "px",
+		"left": tl + "px"
 	});
 	$(".rcm").on("mouseleave", function(){
 		closeRightClickMenu();
@@ -28,10 +44,11 @@ function rightClickMenu(type){
 		rcm_div = "<div class='rcm'>"+
 			//"<div id='rcm_item_1' class='rcm_item' onClick=\"popup('audio'); closeRightClickMenu();\"><img class='rcm_icon' src='/assets/" + window.themedark + "/play_2.png'/>Audio Settings</div>"+
 			//"<div id='rcm_item_2' class='rcm_item' onClick=\"popup('player'); closeRightClickMenu();\"><img class='rcm_icon' src='/assets/" + window.themedark + "/wrench.png'/>Player Settings</div>"+
-			//"<div id='rcm_item_3' class='rcm_item' onClick=\"popup('pers'); closeRightClickMenu();\"><img class='rcm_icon' src='/assets/" + window.themedark + "/customise.png'/>Personalise</div>"+
-			"<div id='rcm_item_4' class='rcm_item' onClick=\"popup('about'); closeRightClickMenu();\"><img class='rcm_icon' src='/assets/" + window.themedark + "/about.png'/>About</div>"+
-			"<div id='rcm_item_5' class='rcm_item' onClick=\"popup('change'); closeRightClickMenu();\"><img class='rcm_icon' src='/assets/" + window.themedark + "/about.png'/>Changelog</div>"+
-			"<div id='rcm_item_6' class='rcm_item' onClick=\"popup('power'); closeRightClickMenu();\"><img class='rcm_icon' src='/assets/" + window.themedark + "/power.png'/>Power</div>"+
+			"<div id='rcm_item_3' class='rcm_item' onClick=\"popup('pers'); closeRightClickMenu();\"><img class='rcm_icon' src='/assets/" + window.themedark + "/customise.png'/>Personalise</div>"+
+			"<div id='rcm_item_4' class='rcm_item' onClick=\"popup('eq'); closeRightClickMenu();\"><img class='rcm_icon' src='/assets/" + window.themedark + "/eq.png'/>Equaliser</div>"+
+			"<div id='rcm_item_5' class='rcm_item' onClick=\"popup('about'); closeRightClickMenu();\"><img class='rcm_icon' src='/assets/" + window.themedark + "/about.png'/>About</div>"+
+			"<div id='rcm_item_6' class='rcm_item' onClick=\"popup('change'); closeRightClickMenu();\"><img class='rcm_icon' src='/assets/" + window.themedark + "/about.png'/>Changelog</div>"+
+			"<div id='rcm_item_7' class='rcm_item' onClick=\"popup('power'); closeRightClickMenu();\"><img class='rcm_icon' src='/assets/" + window.themedark + "/power.png'/>Power</div>"+
 		"</div>";
 			break;
 	}

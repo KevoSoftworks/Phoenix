@@ -22,7 +22,7 @@
 		},
 		"pers":{
 			"header": "Personalisation",
-			"content": "pers.html",
+			"content": "pers.php",
 			"footer": "pers_footer.html"
 		},
 		"change":{
@@ -39,6 +39,11 @@
 			"header": "Update",
 			"content": "update_avail.php",
 			"footer": "update_avail_footer.html"
+		},
+		"eq":{
+			"header": "Graphic Equaliser",
+			"content": "eq.php",
+			"footer": "about_footer.html"
 		}
 	},
 	"rcm": {

@@ -21,8 +21,20 @@
 		margin-top: 0px;
 		margin-left: auto;
 		margin-right: auto;
-		padding: 64px 32px 0px 32px;
+		padding: 16px 32px 0px 32px;
 		position: relative;
+	}
+	
+	/* Album Art */
+	#albumart{
+		height: 200px;
+	}
+	
+	#albumart img{
+		width: 200px;
+		height: 200px;
+		display: block;
+		margin: auto;
 	}
 	
 	/* Song information */
@@ -95,7 +107,7 @@
 		
 		/* Previous, Next, Play, Pause, Shuffle and Repeat Buttons*/
 		.prev, .next, .play, .pause, .shuffle, .repeat, .repeat-one{
-			font-size: 48px;
+			font-size: 32px;
 			color: rgba(calc(255 * <?php echo $theme->color->dark; ?>), calc(255 * <?php echo $theme->color->dark; ?>), calc(255 * <?php echo $theme->color->dark; ?>), calc(0.54 + 0.46 * <?php echo $theme->color->dark;?>));
 		}
 	
@@ -135,43 +147,19 @@
 	/*
 		GRAPHIC EQUALISER
 	*/
-		/* Holder div (wrapper wrap) */
-		#eq_control{
-			overflow-x: auto;
-			overflow-y: hidden;
-			height: 140px;
-			white-space: nowrap;
-			margin-top: 10px;
-		}
 		
 		/* Wrapper div */
 		.eq_control_wrap{
-			margin-left: calc(-0.075*(720px - 100%));
+			width: 100%;
+		}
+		
+		.eq_control_wrap td, .eq_control_wrap th{
+			padding: 0 0 0 0;
+			height: 40px;
 		}
 
 		/* Sliders */
 		input[type="range"]{
-			width: 120px;
-			margin-top: 40px;
-			-webkit-transform: rotate(-90deg);
-			-moz-transform:rotate(-90deg);
-			-o-transform:rotate(-90deg);
-			-ms-transform:rotate(-90deg);
-			transform:rotate(-90deg);
-		}
-
-		/* Slider Wrappers */
-		.eq_range_wrap{
+			width: 100%;
 			margin: 0 0 0 0;
-			padding: 0 0 0 0;
-			max-width: calc((100% - 99px) / 10);
-			margin: 10px -1px 0px;
-			display: inline-block;
-		}
-		
-		/* Slider Text */
-		.eq_range_wrap span{
-			margin-left: 55px;
-			display: inline-block;
-			margin-top: 45px;
 		}

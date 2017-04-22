@@ -61,6 +61,7 @@
 		-moz-background-size: cover;
 		-o-background-size: cover;
 		background-size: cover;
+		max-width: 100vw;
 	}
 
 	/* Body */
@@ -71,6 +72,8 @@
 		padding: 0px 3%;
 		overflow: hidden;
 		cursor: default;
+		height: 100vh;
+		max-width: 100vw;
 	}
 	
 	/* H1 Font */
