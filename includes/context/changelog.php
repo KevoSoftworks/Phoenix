@@ -11,6 +11,10 @@
 = are fixes<br/>
 - are removals<br/>
 ..........................<br/>
+Version 0.0.11, unknown:<br/>
++Update finalisation for i.e. database management<br/>
++Added pref.albumart and pref.sidebar.hover settings<br/>
+<br/>
 Version 0.0.10, 22-04-2017:<br/>
 +Reintroduced the Personalisation settings<br/>
 +Album art for compatible songs via Last.fm<br/>
