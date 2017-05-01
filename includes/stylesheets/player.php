@@ -30,11 +30,14 @@
 		height: 200px;
 	}
 	
-	#albumart img{
+	#albumart img, #albumart i{
 		width: 200px;
 		height: 200px;
 		display: block;
 		margin: auto;
+		font-size: 200px !important;
+		background-color: <?php echo $theme->color->background; ?>;
+		border: 2px solid <?php echo $theme->color->accent; ?>;
 	}
 	
 	/* Song information */

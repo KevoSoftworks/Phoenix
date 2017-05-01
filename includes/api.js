@@ -626,13 +626,17 @@ function getAlbumArt(){
 		},
 		success: function(data){
 			if(typeof data.album !== "undefined"){
-				$("#albumart").html("<img src='" + data.album.image[3]["#text"] + "'/>");
+				if(data.album.image[3]["#text"].length > 3){
+					$("#albumart").html("<img src='" + data.album.image[3]["#text"] + "'/>");
+				} else {
+					$("#albumart").html("<i class='material-icons'>album</i>");
+				}
 			} else {
-				$("#albumart").html("");
+				$("#albumart").html("<i class='material-icons'>album</i>");
 			}
 		},
 		error: function(data){
-			$("#albumart").html("");
+			$("#albumart").html("<i class='material-icons'>album</i>");
 		}
 		
 	});
