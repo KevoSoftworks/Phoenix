@@ -1,3 +1,8 @@
+<?php
+	include_once("db.php");
+	$settings = new Settings();
+?>
+
 window.settings = {
 	easing: {
 		seekbar: {
@@ -38,6 +43,11 @@ window.settings = {
 	}, 
 	
 	hamburger: {
-		addToggle: false
+		addToggle: false,
+		openOnHover: <?php echo $settings->getNode("pref.sidebar.hover")["value"]; ?>
+	},
+	
+	albumart: {
+		doLoad: <?php echo $settings->getNode("pref.albumart")["value"]; ?>
 	}
 };

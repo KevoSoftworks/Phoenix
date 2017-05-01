@@ -1,5 +1,5 @@
 <?php
-	if($_GET["force"] == 1) finaliseUpdate($_GET["version"]);
+	if(isset($_GET["force"]) && $_GET["force"] == 1) finaliseUpdate($_GET["version"]);
 	
 	function finaliseUpdate($curver = "0.0.1"){
 		require_once("../includes/db.php");

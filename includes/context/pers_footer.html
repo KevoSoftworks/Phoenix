@@ -5,11 +5,13 @@
 	function pers_save(){
 		name = $("#pers-name").val();
 		colour = $("#pers-colour").val();
+		sidebarhover = $("#pers-sidebar-hover").val();
+		albumart = $("#pers-albumart").val();
 		
 		$.ajax({
 			url: "/requests/pers.php",
 			type: "GET",
-			data: {name: name, colour: colour},
+			data: {name: name, colour: colour, sidebarhover: sidebarhover, albumart: albumart},
 			success: function(data){
 				 location.reload();
 			},

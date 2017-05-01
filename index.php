@@ -20,7 +20,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<script src='includes/settings.js?<?php echo $updater->getCurrentVersion() ?>'></script>
+		<script src='includes/settings.js.php?<?php echo $updater->getCurrentVersion() ?>'></script>
 		<script src='includes/jquery.js?<?php echo $updater->getCurrentVersion() ?>'></script>
 		<script src='includes/jquery-ui.js?<?php echo $updater->getCurrentVersion() ?>'></script>
 		<script src='includes/api.js?<?php echo $updater->getCurrentVersion() ?>'></script>

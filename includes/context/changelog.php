@@ -13,7 +13,7 @@
 ..........................<br/>
 Version 0.0.11, unknown:<br/>
 +Update finalisation for i.e. database management<br/>
-+Pref.albumart and pref.sidebar.hover settings<br/>
++Sidebar hover and album art loading preferences<br/>
 +Generic album art image<br/>
 =Some album art not being handled properly<br/>
 <br/>
