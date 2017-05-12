@@ -243,7 +243,9 @@ $(document).ready(function(){
 	});
 	
 	$("#hamburger_left").on(window.settings.hamburger.openOnHover ? "mouseenter" : "click", function(e){
-		if(!window.settings.hamburger.openOnHover && window.hamburger_left_state == 1) toggle_hamburger_left();
+		if(!window.settings.hamburger.openOnHover && window.hamburger_left_state == 1){
+			if($(e.target).attr("id") == "folders_wrap" || $(e.target).hasClass("hamburger_wrap") || $(e.target).hasClass("hamburger_button")) toggle_hamburger_left();
+		}
 		if(!window.hamburger_left_is_running){
 			window.hamburger_left_is_running = true;
 			window.hamburger_left_state = 1;
@@ -269,7 +271,9 @@ $(document).ready(function(){
 	});
 	
 	$("#hamburger_right").on(window.settings.hamburger.openOnHover ? "mouseenter" : "click", function(e){
-		if(!window.settings.hamburger.openOnHover && window.hamburger_right_state == 1) toggle_hamburger_right();
+		if(!window.settings.hamburger.openOnHover && window.hamburger_right_state == 1){
+			if($(e.target).hasClass("hamburger_button") || $(e.target).attr("id") == "playlist_info" || $(e.target).attr("id") == "hamburger_right") toggle_hamburger_right();
+		}
 		if(!window.hamburger_right_is_running){
 			window.hamburger_right_is_running = true;
 			window.hamburger_right_state = 1;

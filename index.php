@@ -56,7 +56,7 @@
 			</div>
 			
 			<div id="hamburger_left">
-				<button style="height: 115px; position: absolute; right: 0" onClick="toggle_hamburger_left()"></button>
+				<button class='hamburger_button' style="height: 115px; position: absolute; right: 0" onClick="toggle_hamburger_left()"></button>
 				<div class='hamburger_wrap'>
 					<div id="folders_wrap">
 						<div id="folder_wrap_2">
@@ -72,7 +72,7 @@
 			</div>
 			
 			<div id="hamburger_right">
-				<button style='height: 135px; position: absolute; left: 0' onClick="toggle_hamburger_right()"></button>
+				<button class='hamburger_button' style='height: 135px; position: absolute; left: 0' onClick="toggle_hamburger_right()"></button>
 				<div id="playlist_wrap">
 					<div id="playlist_info">
 						<h2>Current Playlist</h2>
