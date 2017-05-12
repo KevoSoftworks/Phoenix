@@ -19,13 +19,13 @@ window.settings = {
 	},
 	
 	streams: [
-		["Radio 2", "http://icecast.omroep.nl/radio2-bb-mp3"],
-		["3FM", "http://icecast.omroep.nl/3fm-bb-mp3"],
-		["Radio 10", "http://stream.radio10.nl/radio10"],
-		["SkyRadio", "http://8593.live.streamtheworld.com/SKYRADIO_SC"],
-		["Radio Veronica", "http://8503.live.streamtheworld.com:80/VERONICA.mp3"],
-		["Slam FM", "http://vip-icecast.538.lw.triple-it.nl:80/SLAMFM_MP3"],
-		["Arrow Classic Rock", "http://91.221.151.155:80/"]
+		<?php
+			$query = $settings->db->query("SELECT name, url FROM streams");
+			while($res = $query->fetchArray(SQLITE3_ASSOC)){
+				echo "['" . $res["name"] . "', '" . $res["url"] . "'],";
+			}
+			echo "['', '']";
+		?>
 	],
 	
 	textual: {

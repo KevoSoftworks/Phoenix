@@ -44,6 +44,11 @@
 			"header": "Graphic Equaliser",
 			"content": "eq.php",
 			"footer": "about_footer.html"
+		},
+		"library":{
+			"header": "Library",
+			"content": "library.php",
+			"footer": "library_footer.html"
 		}
 	},
 	"rcm": {

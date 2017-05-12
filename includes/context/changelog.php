@@ -16,6 +16,7 @@ Version 0.0.11, unknown:<br/>
 +Sidebar hover and album art loading preferences<br/>
 +Show changelog after an update<br/>
 +Generic album art image<br/>
++Ability to add/edit radio stations<br/>
 =Some album art not being handled properly<br/>
 <br/>
 Version 0.0.10, 22-04-2017:<br/>

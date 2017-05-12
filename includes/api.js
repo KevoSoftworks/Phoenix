@@ -272,7 +272,7 @@ $(document).ready(function(){
 	
 	$("#hamburger_right").on(window.settings.hamburger.openOnHover ? "mouseenter" : "click", function(e){
 		if(!window.settings.hamburger.openOnHover && window.hamburger_right_state == 1){
-			if($(e.target).hasClass("hamburger_button") || $(e.target).attr("id") == "playlist_info" || $(e.target).attr("id") == "hamburger_right") toggle_hamburger_right();
+			if($(e.target).hasClass("hamburger_button") || $(e.target).attr("id") == "playlist_info" || $(e.target).attr("id") == "playlist_wrap" || $(e.target).attr("id") == "hamburger_right") toggle_hamburger_right();
 		}
 		if(!window.hamburger_right_is_running){
 			window.hamburger_right_is_running = true;
@@ -542,8 +542,10 @@ function changeMusicFolder(folder){
 	for(key in currentArray){
 		if(parseInt(Number(key)) == key){
 			if(folder === "window.folders.global[\"Radio\"]"){
-				$("#folders").append("<div class='folder folder_song' id='folder_song_" + count + "'>" + currentArray[key][0] + "</div>");
-				$("#folder_song_" + count).click({param: currentArray[key][1]}, function(e){addSong(e.data.param, '-2')});
+				if(currentArray[key][0] != ""){
+					$("#folders").append("<div class='folder folder_song' id='folder_song_" + count + "'>" + currentArray[key][0] + "</div>");
+					$("#folder_song_" + count).click({param: currentArray[key][1]}, function(e){addSong(e.data.param, '-2')});
+				}
 			} else {
 				$("#folders").append("<div class='folder folder_song' id='folder_song_" + count + "'>" + currentArray[key] + "</div>");
 				$("#folder_song_" + count).attr("onclick", "addSong('" + folder + "', '" + key + "', 'song_" + count + "')");
