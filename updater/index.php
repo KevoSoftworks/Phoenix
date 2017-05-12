@@ -27,7 +27,7 @@
 			success: function(data){
 				d = JSON.parse(data);
 				if(d.stat){
-					window.location.replace("/");
+					window.location.replace("/?changelog");
 				} else {
 					alert("Something happened! Update aborted.");
 					window.location.replace("/");

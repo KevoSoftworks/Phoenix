@@ -14,6 +14,7 @@
 Version 0.0.11, unknown:<br/>
 +Update finalisation for i.e. database management<br/>
 +Sidebar hover and album art loading preferences<br/>
++Show changelog after an update<br/>
 +Generic album art image<br/>
 =Some album art not being handled properly<br/>
 <br/>

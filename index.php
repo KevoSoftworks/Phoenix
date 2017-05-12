@@ -31,6 +31,11 @@
 			window.themedark = "<?php echo $theme->color->dark; ?>";
 			window.context = JSON.parse('<?php echo trim(preg_replace('/\s+/', ' ', file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/includes/context/context.json")));?>');
 			window.update = {"update": <?php echo ($updater->hasUpdate() ? 'true' : 'false') ?>, "new-ver": "<?php echo $updater->getNewVersion()?>"};
+			<?php
+				if(isset($_GET["changelog"])){
+					echo "$(document).ready(function(){popup('change'); window.history.pushState(NULL, 'Phoenix', '/')});";
+				}
+			?>
 		</script>
 		
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
