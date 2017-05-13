@@ -108,9 +108,12 @@
 			color: rgba(calc(255 * <?php echo $theme->color->dark; ?>), calc(255 * <?php echo $theme->color->dark; ?>), calc(255 * <?php echo $theme->color->dark; ?>), calc(0.26 + 0.04 * <?php echo $theme->color->dark;?>)) !important;
 		}
 		
+		.btn-non-active i{
+			color: rgba(calc(255 * <?php echo $theme->color->dark; ?>), calc(255 * <?php echo $theme->color->dark; ?>), calc(255 * <?php echo $theme->color->dark; ?>), calc(0.26 + 0.04 * <?php echo $theme->color->dark;?>)) !important;
+		}
+		
 		/* Previous, Next, Play, Pause, Shuffle and Repeat Buttons*/
 		.prev, .next, .play, .pause, .shuffle, .repeat, .repeat-one{
-			font-size: 32px;
 			color: rgba(calc(255 * <?php echo $theme->color->dark; ?>), calc(255 * <?php echo $theme->color->dark; ?>), calc(255 * <?php echo $theme->color->dark; ?>), calc(0.54 + 0.46 * <?php echo $theme->color->dark;?>));
 		}
 	

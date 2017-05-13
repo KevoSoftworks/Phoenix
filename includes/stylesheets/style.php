@@ -46,7 +46,7 @@
 	}
 	
 	.material-icons{
-		font-size: 48px !important;
+		color: rgba(calc(255 * <?php echo $theme->color->dark; ?>), calc(255 * <?php echo $theme->color->dark; ?>), calc(255 * <?php echo $theme->color->dark; ?>), calc(0.54 + 0.46 * <?php echo $theme->color->dark;?>));
 	}
 	
 	
@@ -74,6 +74,21 @@
 		cursor: default;
 		height: 100vh;
 		max-width: 100vw;
+	}
+	
+	/* Force font-size 24px */
+	.font24{
+		font-size: 24px !important;
+	}
+	
+	/* Force font-size 32px */
+	.font32{
+		font-size: 32px !important;
+	}
+	
+	/* Force font-size 48px */
+	.font48{
+		font-size: 48px !important;
 	}
 	
 	/* H1 Font */

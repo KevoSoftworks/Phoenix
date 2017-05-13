@@ -112,11 +112,11 @@
 					<div id="timebar" style="width: 0px"></div>
 				</div>
 				<div id="song_control">
-					<button class='shuffle' onClick="shuffle()"><i class='material-icons'>shuffle</i></button>
-					<button class='prev' onClick="prev()"><i class="material-icons">skip_previous</i></button>
-					<button class='play' onClick="play()"><i class="material-icons">play_circle_filled</i></button>
-					<button class='next' onClick="next()"><i class="material-icons">skip_next</i></button>
-					<button class='repeat' onClick="repeat()"><i class="material-icons">repeat</i></button>
+					<button class='shuffle' onClick="shuffle()"><i class='material-icons font48'>shuffle</i></button>
+					<button class='prev' onClick="prev()"><i class="material-icons font48">skip_previous</i></button>
+					<button class='play' onClick="play()"><i class="material-icons font48">play_circle_filled</i></button>
+					<button class='next' onClick="next()"><i class="material-icons font48">skip_next</i></button>
+					<button class='repeat' onClick="repeat()"><i class="material-icons font48">repeat</i></button>
 				</div>
 				<div id="volume_control">
 					<button class='vol_min' onClick="vol(-1)"></button>

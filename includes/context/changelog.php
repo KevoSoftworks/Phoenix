@@ -18,6 +18,7 @@ Version 0.0.11, unknown:<br/>
 +Generic album art image<br/>
 +Ability to add/edit radio stations<br/>
 =Some album art not being handled properly<br/>
+=Popup width is now content aware and can be wider<br/>
 <br/>
 Version 0.0.10, 22-04-2017:<br/>
 +Reintroduced the Personalisation settings<br/>

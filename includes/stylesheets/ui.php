@@ -88,9 +88,7 @@
 		background-color: #292323;
 		border: 1px solid <?php echo $theme->color->border; ?>;
 		color: white;
-		width: 400px;
-		padding: 10px 10px;
-		max-width: 95%;
+		max-width: 600px;
 		max-height: 95%;
 		font-size: 14px;
 		padding: 0 0;
@@ -115,7 +113,7 @@
 		text-align: center;
 		position: relative;
 		overflow-y: auto;
-		padding: 0px 7px;
+		padding: 5px 30px;
 	}
 	
 	/* Footer Wrapper */
