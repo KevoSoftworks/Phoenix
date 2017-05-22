@@ -11,7 +11,7 @@
 = are fixes<br/>
 - are removals<br/>
 ..........................<br/>
-Version 0.0.11, unknown:<br/>
+Version 0.11.0-dev, unknown:<br/>
 +Update finalisation for i.e. database management<br/>
 +Sidebar hover and album art loading preferences<br/>
 +Show changelog after an update<br/>
@@ -19,6 +19,7 @@ Version 0.0.11, unknown:<br/>
 +Ability to add/edit radio stations<br/>
 =Some album art not being handled properly<br/>
 =Popup width is now content aware and can be wider<br/>
+=Album image pushing controls off-screen (the image now scales with screen size)<br/>
 <br/>
 Version 0.0.10, 22-04-2017:<br/>
 +Reintroduced the Personalisation settings<br/>
