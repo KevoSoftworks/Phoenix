@@ -27,15 +27,17 @@
 	
 	/* Album Art */
 	#albumart{
-		height: 200px;
+		height: 25vh;
+		width: 25vh;
+		margin: auto;
 	}
 	
 	#albumart img, #albumart i{
-		width: 200px;
-		height: 200px;
+		height: 25vh;
+		width: 25vh;
 		display: block;
 		margin: auto;
-		font-size: 200px !important;
+		font-size: 25vh !important;
 		background-color: <?php echo $theme->color->background; ?>;
 		border: 2px solid <?php echo $theme->color->accent; ?>;
 	}
