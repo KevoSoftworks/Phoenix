@@ -6,6 +6,8 @@
 	$settings = new Settings();
 	$settings->setNode("pref.name", $_GET["name"]);
 	$settings->setNode("pref.theme", $_GET["colour"]);
+	$settings->setNode("pref.sidebar.hover", $_GET["sidebarhover"]);
+	$settings->setNode("pref.albumart", $_GET["albumart"]);
 	
 	die(json_encode(["stat" => true]));
 ?>

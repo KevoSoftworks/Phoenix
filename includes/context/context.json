@@ -44,6 +44,21 @@
 			"header": "Graphic Equaliser",
 			"content": "eq.php",
 			"footer": "about_footer.html"
+		},
+		"library":{
+			"header": "Library",
+			"content": "library/library.php",
+			"footer": "library/library_footer.html"
+		},
+		"library-add-stream":{
+			"header": "Add stream",
+			"content": "library/add-stream.php",
+			"footer": "library/add-stream-footer.html"
+		},
+		"library-delete-stream":{
+			"header": "Delete stream",
+			"content": "library/delete-stream.php",
+			"footer": "library/delete-stream-footer.html"
 		}
 	},
 	"rcm": {

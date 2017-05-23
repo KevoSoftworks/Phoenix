@@ -27,14 +27,19 @@
 	
 	/* Album Art */
 	#albumart{
-		height: 200px;
+		height: 25vh;
+		width: 25vh;
+		margin: auto;
 	}
 	
-	#albumart img{
-		width: 200px;
-		height: 200px;
+	#albumart img, #albumart i{
+		height: 25vh;
+		width: 25vh;
 		display: block;
 		margin: auto;
+		font-size: 25vh !important;
+		background-color: <?php echo $theme->color->background; ?>;
+		border: 2px solid <?php echo $theme->color->accent; ?>;
 	}
 	
 	/* Song information */
@@ -105,9 +110,12 @@
 			color: rgba(calc(255 * <?php echo $theme->color->dark; ?>), calc(255 * <?php echo $theme->color->dark; ?>), calc(255 * <?php echo $theme->color->dark; ?>), calc(0.26 + 0.04 * <?php echo $theme->color->dark;?>)) !important;
 		}
 		
+		.btn-non-active i{
+			color: rgba(calc(255 * <?php echo $theme->color->dark; ?>), calc(255 * <?php echo $theme->color->dark; ?>), calc(255 * <?php echo $theme->color->dark; ?>), calc(0.26 + 0.04 * <?php echo $theme->color->dark;?>)) !important;
+		}
+		
 		/* Previous, Next, Play, Pause, Shuffle and Repeat Buttons*/
 		.prev, .next, .play, .pause, .shuffle, .repeat, .repeat-one{
-			font-size: 32px;
 			color: rgba(calc(255 * <?php echo $theme->color->dark; ?>), calc(255 * <?php echo $theme->color->dark; ?>), calc(255 * <?php echo $theme->color->dark; ?>), calc(0.54 + 0.46 * <?php echo $theme->color->dark;?>));
 		}
 	

@@ -242,7 +242,10 @@ $(document).ready(function(){
 		}
 	});
 	
-	$("#hamburger_left").on("mouseenter", function(e){
+	$("#hamburger_left").on(window.settings.hamburger.openOnHover ? "mouseenter" : "click", function(e){
+		if(!window.settings.hamburger.openOnHover && window.hamburger_left_state == 1){
+			if($(e.target).attr("id") == "folders_wrap" || $(e.target).hasClass("hamburger_wrap") || $(e.target).hasClass("hamburger_button")) toggle_hamburger_left();
+		}
 		if(!window.hamburger_left_is_running){
 			window.hamburger_left_is_running = true;
 			window.hamburger_left_state = 1;
@@ -254,20 +257,25 @@ $(document).ready(function(){
 				width = wwidth * 0.5;
 			}
 			$("#hamburger_left").addClass("extended");
+			$(".hamburger_icon_left").text("arrow_upward");
 			$("#hamburger_left").stop().animate({"width": width + "px"}, function(){window.hamburger_left_is_running = false;});
 		}
 	});
 	
-	$("#hamburger_left").on("mouseleave", function(e){
+	$("#hamburger_left").on(window.settings.hamburger.openOnHover ? "mouseleave" : "hamburger_close", function(e){
 		if(!window.hamburger_left_is_running && !window.rcm){
 			window.hamburger_left_is_running = true;
 			window.hamburger_left_state = 0;
 			$("#hamburger_left").removeClass("extended");
+			$(".hamburger_icon_left").text("arrow_downward");
 			$("#hamburger_left").stop().animate({"width": "32px"}, function(){window.hamburger_left_is_running = false;});
 		}
 	});
 	
-	$("#hamburger_right").on("mouseenter", function(e){
+	$("#hamburger_right").on(window.settings.hamburger.openOnHover ? "mouseenter" : "click", function(e){
+		if(!window.settings.hamburger.openOnHover && window.hamburger_right_state == 1){
+			if($(e.target).hasClass("hamburger_button") || $(e.target).attr("id") == "playlist_info" || $(e.target).attr("id") == "playlist_wrap" || $(e.target).attr("id") == "hamburger_right") toggle_hamburger_right();
+		}
 		if(!window.hamburger_right_is_running){
 			window.hamburger_right_is_running = true;
 			window.hamburger_right_state = 1;
@@ -279,15 +287,17 @@ $(document).ready(function(){
 				width = wwidth * 0.3;
 			}
 			$("#hamburger_right").addClass("extended");
+			$(".hamburger_icon_right").text("arrow_upward");
 			$("#hamburger_right").stop().animate({"width": width + "px"}, function(){window.hamburger_right_is_running = false;});
 		}
 	});
 	
-	$("#hamburger_right").on("mouseleave", function(e){
+	$("#hamburger_right").on(window.settings.hamburger.openOnHover ? "mouseleave" : "hamburger_close", function(e){
 		if(!window.hamburger_right_is_running && !window.rcm){
 			window.hamburger_right_is_running = true;
 			window.hamburger_right_state = 0;
 			$("#hamburger_right").removeClass("extended");
+			$(".hamburger_icon_right").text("arrow_downward");
 			$("#hamburger_right").stop().animate({"width": "32px"}, function(){window.hamburger_right_is_running = false;});
 		}
 	});
@@ -323,11 +333,11 @@ $(document).ready(function(){
 });
 
 function toggle_hamburger_left(){
-	window.hamburger_left_state ? $("#hamburger_left").trigger("mouseleave") : $("#hamburger_left").trigger("mouseenter");
+	window.hamburger_left_state ? $("#hamburger_left").trigger(window.settings.hamburger.openOnHover ? "mouseleave" : "hamburger_close") : $("#hamburger_left").trigger(window.settings.hamburger.openOnHover ? "mouseenter" : "click");
 }
 
 function toggle_hamburger_right(){
-	window.hamburger_right_state ? $("#hamburger_right").trigger("mouseleave") : $("#hamburger_right").trigger("mouseenter");
+	window.hamburger_right_state ? $("#hamburger_right").trigger(window.settings.hamburger.openOnHover ? "mouseleave" : "hamburger_close") : $("#hamburger_right").trigger(window.settings.hamburger.openOnHover ? "mouseenter" : "click");
 }
 
 function hamburgerFullscreen(){
@@ -536,8 +546,10 @@ function changeMusicFolder(folder){
 	for(key in currentArray){
 		if(parseInt(Number(key)) == key){
 			if(folder === "window.folders.global[\"Radio\"]"){
-				$("#folders").append("<div class='folder folder_song' id='folder_song_" + count + "'>" + currentArray[key][0] + "</div>");
-				$("#folder_song_" + count).click({param: currentArray[key][1]}, function(e){addSong(e.data.param, '-2')});
+				if(currentArray[key][0] != ""){
+					$("#folders").append("<div class='folder folder_song' id='folder_song_" + count + "'>" + currentArray[key][0] + "</div>");
+					$("#folder_song_" + count).click({param: currentArray[key][1]}, function(e){addSong(e.data.param, '-2')});
+				}
 			} else {
 				$("#folders").append("<div class='folder folder_song' id='folder_song_" + count + "'>" + currentArray[key] + "</div>");
 				$("#folder_song_" + count).attr("onclick", "addSong('" + folder + "', '" + key + "', 'song_" + count + "')");
@@ -614,28 +626,36 @@ function changePlaylistSong(sid){
 }
 
 function getAlbumArt(){
-	$.ajax({
-		url: "https://ws.audioscrobbler.com/2.0/",
-		type: "GET",
-		data: {
-			method: "album.getinfo",
-			api_key: "49770de2ce91d8036a5637de5a645acb",
-			artist: response[1][0].Artist,
-			album: response[1][0].Album,
-			format: "json"
-		},
-		success: function(data){
-			if(typeof data.album !== "undefined"){
-				$("#albumart").html("<img src='" + data.album.image[3]["#text"] + "'/>");
-			} else {
-				$("#albumart").html("");
+	if(window.settings.albumart.doLoad){
+		$.ajax({
+			url: "https://ws.audioscrobbler.com/2.0/",
+			type: "GET",
+			data: {
+				method: "album.getinfo",
+				api_key: "49770de2ce91d8036a5637de5a645acb",
+				artist: response[1][0].Artist,
+				album: response[1][0].Album,
+				format: "json"
+			},
+			success: function(data){
+				if(typeof data.album !== "undefined"){
+					if(data.album.image[3]["#text"].length > 3){
+						$("#albumart").html("<img src='" + data.album.image[3]["#text"] + "'/>");
+					} else {
+						$("#albumart").html("<i class='material-icons'>album</i>");
+					}
+				} else {
+					$("#albumart").html("<i class='material-icons'>album</i>");
+				}
+			},
+			error: function(data){
+				$("#albumart").html("<i class='material-icons'>album</i>");
 			}
-		},
-		error: function(data){
-			$("#albumart").html("");
-		}
-		
-	});
+			
+		});
+	} else {
+		$("#albumart").html("<i class='material-icons'>album</i>");
+	}
 }
 
 function sendCmd(cmd){

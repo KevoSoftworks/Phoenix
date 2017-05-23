@@ -7,6 +7,11 @@
 		$colours[] = $res;
 	}
 	$cur_colour = $settings->getNode('pref.theme');
+	$cur_sidebar_hover = $settings->getNode('pref.sidebar.hover');
+	$cur_albumart = $settings->getNode('pref.albumart');
+	
+	$truefalse = array("true", "false");
+	$yesno = array("Yes", "No");
 ?>
 
 <table style='width: 100%'>
@@ -18,6 +23,28 @@
 				$sel = "";
 				if($colour["ref"] == $cur_colour["value"]) $sel = "selected";
 				echo "<option value='" . $colour["ref"] . "' " . $sel . ">" . $colour["name"] . "</option>";
+			}
+		?>
+	</select>
+	</td></tr>
+	<tr><td>Sidebar open on hover</td><td>
+	<select id="pers-sidebar-hover" style='width: 100%'>
+		<?php
+			foreach($truefalse as $key=>$tf){
+				$sel = "";
+				if($tf == $cur_sidebar_hover["value"]) $sel = "selected";
+				echo "<option value='" . $tf . "' " . $sel . ">" . $yesno[$key] . "</option>";
+			}
+		?>
+	</select>
+	</td></tr>
+	<tr><td>Load album art</td><td>
+	<select id="pers-albumart" style='width: 100%'>
+		<?php
+			foreach($truefalse as $key=>$tf){
+				$sel = "";
+				if($tf == $cur_albumart["value"]) $sel = "selected";
+				echo "<option value='" . $tf . "' " . $sel . ">" . $yesno[$key] . "</option>";
 			}
 		?>
 	</select>

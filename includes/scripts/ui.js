@@ -45,10 +45,11 @@ function rightClickMenu(type){
 			//"<div id='rcm_item_1' class='rcm_item' onClick=\"popup('audio'); closeRightClickMenu();\"><img class='rcm_icon' src='/assets/" + window.themedark + "/play_2.png'/>Audio Settings</div>"+
 			//"<div id='rcm_item_2' class='rcm_item' onClick=\"popup('player'); closeRightClickMenu();\"><img class='rcm_icon' src='/assets/" + window.themedark + "/wrench.png'/>Player Settings</div>"+
 			"<div id='rcm_item_3' class='rcm_item' onClick=\"popup('pers'); closeRightClickMenu();\"><img class='rcm_icon' src='/assets/" + window.themedark + "/customise.png'/>Personalise</div>"+
-			"<div id='rcm_item_4' class='rcm_item' onClick=\"popup('eq'); closeRightClickMenu();\"><img class='rcm_icon' src='/assets/" + window.themedark + "/eq.png'/>Equaliser</div>"+
-			"<div id='rcm_item_5' class='rcm_item' onClick=\"popup('about'); closeRightClickMenu();\"><img class='rcm_icon' src='/assets/" + window.themedark + "/about.png'/>About</div>"+
-			"<div id='rcm_item_6' class='rcm_item' onClick=\"popup('change'); closeRightClickMenu();\"><img class='rcm_icon' src='/assets/" + window.themedark + "/about.png'/>Changelog</div>"+
-			"<div id='rcm_item_7' class='rcm_item' onClick=\"popup('power'); closeRightClickMenu();\"><img class='rcm_icon' src='/assets/" + window.themedark + "/power.png'/>Power</div>"+
+			"<div id='rcm_item_4' class='rcm_item' onClick=\"popup('library'); closeRightClickMenu();\"><img class='rcm_icon' src='/assets/" + window.themedark + "/music.png'/>Library</div>"+
+			"<div id='rcm_item_5' class='rcm_item' onClick=\"popup('eq'); closeRightClickMenu();\"><img class='rcm_icon' src='/assets/" + window.themedark + "/eq.png'/>Equaliser</div>"+
+			"<div id='rcm_item_6' class='rcm_item' onClick=\"popup('about'); closeRightClickMenu();\"><img class='rcm_icon' src='/assets/" + window.themedark + "/about.png'/>About</div>"+
+			"<div id='rcm_item_7' class='rcm_item' onClick=\"popup('change'); closeRightClickMenu();\"><img class='rcm_icon' src='/assets/" + window.themedark + "/about.png'/>Changelog</div>"+
+			"<div id='rcm_item_8' class='rcm_item' onClick=\"popup('power'); closeRightClickMenu();\"><img class='rcm_icon' src='/assets/" + window.themedark + "/power.png'/>Power</div>"+
 		"</div>";
 			break;
 	}

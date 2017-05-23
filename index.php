@@ -20,17 +20,23 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<script src='includes/settings.js?<?php echo $updater->getCurrentVersion() ?>'></script>
+		<script src='includes/settings.js.php?<?php echo $updater->getCurrentVersion() ?>'></script>
 		<script src='includes/jquery.js?<?php echo $updater->getCurrentVersion() ?>'></script>
 		<script src='includes/jquery-ui.js?<?php echo $updater->getCurrentVersion() ?>'></script>
 		<script src='includes/api.js?<?php echo $updater->getCurrentVersion() ?>'></script>
 		
 		<script src='includes/scripts/ui.js?<?php echo $updater->getCurrentVersion() ?>'></script>
 		
+		<!-- This should be moved to the settings.js.php file -->
 		<script type="text/javascript">
 			window.themedark = "<?php echo $theme->color->dark; ?>";
 			window.context = JSON.parse('<?php echo trim(preg_replace('/\s+/', ' ', file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/includes/context/context.json")));?>');
 			window.update = {"update": <?php echo ($updater->hasUpdate() ? 'true' : 'false') ?>, "new-ver": "<?php echo $updater->getNewVersion()?>"};
+			<?php
+				if(isset($_GET["changelog"])){
+					echo "$(document).ready(function(){popup('change'); window.history.pushState(null, 'Phoenix', '/')});";
+				}
+			?>
 		</script>
 		
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -56,7 +62,7 @@
 			</div>
 			
 			<div id="hamburger_left">
-				<button style="height: 115px; position: absolute; right: 0" onClick="toggle_hamburger_left()"></button>
+				<button class='hamburger_button' onClick="toggle_hamburger_left()"><span class='hamburger_text'><h5 class='inline font24'>Library</h5><i class="material-icons inline font32 hamburger_icon_left">arrow_downward</i></span></button>
 				<div class='hamburger_wrap'>
 					<div id="folders_wrap">
 						<div id="folder_wrap_2">
@@ -72,7 +78,7 @@
 			</div>
 			
 			<div id="hamburger_right">
-				<button style='height: 135px; position: absolute; left: 0' onClick="toggle_hamburger_right()"></button>
+				<button class='hamburger_button' onClick="toggle_hamburger_right()"><span class='hamburger_text'><i class="material-icons inline font32 hamburger_icon_right">arrow_downward</i><h5 class='inline font24'>Playlist</h5></span></button>
 				<div id="playlist_wrap">
 					<div id="playlist_info">
 						<h2>Current Playlist</h2>
@@ -106,11 +112,11 @@
 					<div id="timebar" style="width: 0px"></div>
 				</div>
 				<div id="song_control">
-					<button class='shuffle' onClick="shuffle()"><i class='material-icons'>shuffle</i></button>
-					<button class='prev' onClick="prev()"><i class="material-icons">skip_previous</i></button>
-					<button class='play' onClick="play()"><i class="material-icons">play_circle_filled</i></button>
-					<button class='next' onClick="next()"><i class="material-icons">skip_next</i></button>
-					<button class='repeat' onClick="repeat()"><i class="material-icons">repeat</i></button>
+					<button class='shuffle' onClick="shuffle()"><i class='material-icons font48'>shuffle</i></button>
+					<button class='prev' onClick="prev()"><i class="material-icons font48">skip_previous</i></button>
+					<button class='play' onClick="play()"><i class="material-icons font48">play_circle_filled</i></button>
+					<button class='next' onClick="next()"><i class="material-icons font48">skip_next</i></button>
+					<button class='repeat' onClick="repeat()"><i class="material-icons font48">repeat</i></button>
 				</div>
 				<div id="volume_control">
 					<button class='vol_min' onClick="vol(-1)"></button>
