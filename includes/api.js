@@ -257,6 +257,7 @@ $(document).ready(function(){
 				width = wwidth * 0.5;
 			}
 			$("#hamburger_left").addClass("extended");
+			$(".hamburger_icon_left").text("arrow_upward");
 			$("#hamburger_left").stop().animate({"width": width + "px"}, function(){window.hamburger_left_is_running = false;});
 		}
 	});
@@ -266,6 +267,7 @@ $(document).ready(function(){
 			window.hamburger_left_is_running = true;
 			window.hamburger_left_state = 0;
 			$("#hamburger_left").removeClass("extended");
+			$(".hamburger_icon_left").text("arrow_downward");
 			$("#hamburger_left").stop().animate({"width": "32px"}, function(){window.hamburger_left_is_running = false;});
 		}
 	});
@@ -285,6 +287,7 @@ $(document).ready(function(){
 				width = wwidth * 0.3;
 			}
 			$("#hamburger_right").addClass("extended");
+			$(".hamburger_icon_right").text("arrow_upward");
 			$("#hamburger_right").stop().animate({"width": width + "px"}, function(){window.hamburger_right_is_running = false;});
 		}
 	});
@@ -294,6 +297,7 @@ $(document).ready(function(){
 			window.hamburger_right_is_running = true;
 			window.hamburger_right_state = 0;
 			$("#hamburger_right").removeClass("extended");
+			$(".hamburger_icon_right").text("arrow_downward");
 			$("#hamburger_right").stop().animate({"width": "32px"}, function(){window.hamburger_right_is_running = false;});
 		}
 	});

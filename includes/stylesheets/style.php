@@ -76,6 +76,11 @@
 		max-width: 100vw;
 	}
 	
+	/* Force inline */
+	.inline{
+		display: inline !important;
+	}
+	
 	/* Force font-size 24px */
 	.font24{
 		font-size: 24px !important;
@@ -176,13 +181,6 @@
 			z-index: 49;
 			width: 32px;
 			height: 100%;
-			background-image: url('/assets/hamburger_left_retracted.png');
-			background-repeat: no-repeat;
-			background-position: top right;
-		}
-
-		#hamburger_left.extended{
-			background-image: url('/assets/hamburger_left_extended.png');
 		}
 	
 	/* Right Hamburger */
@@ -193,16 +191,50 @@
 			z-index: 50;
 			width: 32px;
 			height: 100%;
-			background-image: url('/assets/hamburger_right_retracted.png');
-			background-repeat: no-repeat;
-			background-position: top left;
-		}
-
-		#hamburger_right.extended{
-			background-image: url('/assets/hamburger_right_extended.png');
 		}
 	
 	/* Hamburger Wrapper */
 	.hamburger_wrap{
 		height: 100%;
+	}
+	
+	/* Hamburger Buttons */
+	.hamburger_button{
+		position: absolute;
+		width: 32px;
+		height: 0px;
+	}
+	
+	.hamburger_button i{
+		vertical-align: middle;
+		position: relative;
+		top: -5px;
+	}
+	
+	.hamburger_text{
+		display: block;
+	}
+	
+	#hamburger_left .hamburger_button{
+		right: 0;
+		margin-top: 105.35px;
+	}
+	
+	#hamburger_right .hamburger_button{
+		left: 0;
+	}
+	
+	#hamburger_left .hamburger_text{
+		transform: rotate(-90deg);
+		transform-origin: 0% 0%;
+		-ms-transform: rotate(-90deg);
+		-ms-transform-origin: 0% 0%;
+		-webkit-transform: rotate(-90deg);
+		-webkit-transform-origin: 0% 0%;
+	}
+	
+	#hamburger_right .hamburger_text{
+		transform: rotate(90deg);
+		-ms-transform: rotate(90deg);
+		-webkit-transform: rotate(90deg);
 	}
