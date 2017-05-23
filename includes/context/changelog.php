@@ -11,17 +11,18 @@
 = are fixes<br/>
 - are removals<br/>
 ..........................<br/>
-Version 0.11.0-dev, unknown:<br/>
+Version 0.11.0, 23-05-2017:<br/>
 +Update finalisation for i.e. database management<br/>
 +Sidebar hover and album art loading preferences<br/>
 +Show changelog after an update<br/>
 +Generic album art image<br/>
-+Ability to add/edit radio stations<br/>
++Ability to add/remove radio stations<br/>
 =Some album art not being handled properly<br/>
 =Popup width is now content aware and can be wider<br/>
 =Album image pushing controls off-screen (the image now scales with screen size)<br/>
 =Semantic Versioning<br/>
 =Hamburger text now better reflects the overall theme<br/>
+=Radio streams are now sorted alphabetically<br/>
 <br/>
 Version 0.0.10, 22-04-2017:<br/>
 +Reintroduced the Personalisation settings<br/>
@@ -71,3 +72,5 @@ Version 0.0.2, 19-08-2016:<br/>
 <br/>
 Version 0.0.1, 09-06-2016:<br/>
 +Initial release<br/>
+
+<br/>

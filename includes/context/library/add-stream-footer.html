@@ -1,0 +1,23 @@
+<div class='popup_button' onClick="stream_add();">Add</div>
+<div class='popup_button' onClick="popup('library')">Cancel</div>
+
+<script type='text/javascript'>
+	function stream_add(){
+		name = $("#library-add-stream-name").val();
+		url = $("#library-add-stream-url").val();
+		
+		if(url.length < 4 || name.length < 1) return;
+		
+		$.ajax({
+			url: "/requests/library/add.php",
+			type: "GET",
+			data: {name: name, url: url},
+			success: function(data){
+				location.reload();
+			},
+			error: function(data){
+				alert('An error has occurred');
+			}
+		});
+	}
+</script>

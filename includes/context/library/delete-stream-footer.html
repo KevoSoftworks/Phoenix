@@ -1,0 +1,24 @@
+<div class='popup_button' onClick="stream_delete();">Yes, delete</div>
+<div class='popup_button' onClick="popup('library')">No, cancel</div>
+
+<script>
+	function stream_delete(){
+		id = $("#library-delete-stream-id").val();
+		
+		$.ajax({
+			url: "/requests/library/delete.php",
+			type: "GET",
+			data: {id: id},
+			success: function(data){
+				if(data.stat){
+					location.reload();
+				} else {
+					alert('An error occurred');
+				}
+			},
+			error: function(data){
+				alert('An error has occurred');
+			}
+		});
+	}
+</script>

@@ -20,11 +20,11 @@ window.settings = {
 	
 	streams: [
 		<?php
-			$query = $settings->db->query("SELECT name, url FROM streams");
+			$query = $settings->db->query("SELECT id, name, url FROM streams ORDER BY name");
 			while($res = $query->fetchArray(SQLITE3_ASSOC)){
-				echo "['" . $res["name"] . "', '" . $res["url"] . "'],";
+				echo "['" . $res["name"] . "', '" . $res["url"] . "', " . $res["id"] . "],";
 			}
-			echo "['', '']";
+			echo "['', '', '']";
 		?>
 	],
 	

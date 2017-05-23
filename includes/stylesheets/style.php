@@ -81,6 +81,11 @@
 		display: inline !important;
 	}
 	
+	/* Force vertical-align: middle */
+	.va-middle{
+		vertical-align: middle !important;
+	}
+	
 	/* Force font-size 24px */
 	.font24{
 		font-size: 24px !important;

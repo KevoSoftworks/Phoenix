@@ -30,6 +30,7 @@
 				$settings->db->query("INSERT INTO streams(name, url) VALUES ('Radio Veronica', 'http://8503.live.streamtheworld.com:80/VERONICA.mp3')");
 				$settings->db->query("INSERT INTO streams(name, url) VALUES ('Slam FM', 'http://vip-icecast.538.lw.triple-it.nl:80/SLAMFM_MP3')");
 				$settings->db->query("INSERT INTO streams(name, url) VALUES ('Arrow Classic Rock', 'http://91.221.151.155:80/')");
+				$settings->db->query("INSERT INTO streams(name, url) VALUES ('Q-Music', 'http://icecast-qmusic.cdp.triple-it.nl/Qmusic_nl_live_96.mp3')");
 			}
 		}
 	}

@@ -140,5 +140,18 @@
 		background-color: <?php echo $theme->color->accent; ?>;
 	}
 
-
-
+/*
+	Content
+*/
+	/* Content button */
+	.content-button{
+		border: 0.5px solid <?php echo $theme->color->accent; ?>;
+		background-color: <?php echo $theme->color->background; ?>;
+		color: <?php echo $theme->color->text; ?>;
+		padding: 10px 15px;
+		display: inline-block;
+	}
+	
+	.content-button:hover{
+		background-color: <?php echo $theme->color->border; ?>;
+	}
