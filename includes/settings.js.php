@@ -13,9 +13,6 @@ window.settings = {
 			time: 2000, //time in milliseconds
 			type: "swing"
 		},
-		screensaver: {
-			time: 1000 //time in milliseconds
-		}
 	},
 	
 	streams: [
