@@ -7,8 +7,11 @@
 			$man = file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/manifest.json");
 			$this->manifest = (Array)json_decode($man);
 			
-			$man = file_get_contents($this->manifest["update-manifest"]);
-			$this->update_manifest = (Array)json_decode($man);
+			if(@$man = file_get_contents($this->manifest["update-manifest"])){
+				$this->update_manifest = (Array)json_decode($man);
+			} else {
+				$this->update_manifest["update_ver"] = $this->getCurrentVersion();
+			}
 		}
 		
 		function getCurrentVersion(){

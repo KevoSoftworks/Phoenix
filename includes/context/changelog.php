@@ -11,6 +11,9 @@
 = are fixes<br/>
 - are removals<br/>
 ..........................<br/>
+Version 0.11.1-DEV, 06-09-2017:<br/>
+=Updater not verifying updater-domain accessability<br/>
+<br/>
 Version 0.11.0, 23-05-2017:<br/>
 +Update finalisation for i.e. database management<br/>
 +Sidebar hover and album art loading preferences<br/>
