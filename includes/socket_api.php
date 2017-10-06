@@ -27,6 +27,7 @@
 	
 	function readSocket($socket){
 		$output = "";
+		if(!$socket) return;
 		while(!feof($socket)){
 			$response = fgets($socket, 1024);
 			$output .= $response;
